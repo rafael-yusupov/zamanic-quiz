@@ -7,16 +7,36 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1130241889562182');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1130241889562182&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 <style>
 :root{
-  --ink:#1B1418;
-  --ink-soft:#6E5F62;
-  --porcelain:#F1E7E3;
-  --card:#FFFCFB;
-  --line:#E2D2CB;
-  --wine:#6E2B3D;
-  --gold:#B08A4F;
-  --gold-soft:#E8D7B8;
+  --ink:#3A2F33;
+  --ink-soft:#948288;
+  --porcelain:#FFFBF8;
+  --card:#FFFFFF;
+  --line:#F4E6E2;
+  --wine:#EE7D9C;
+  --wine-deep:#E0678A;
+  --gold:#D9A94E;
+  --gold-soft:#FBE9C4;
 
   --r-m:16px;
   --r-l:26px;
@@ -32,23 +52,24 @@ body{
   margin:0;
   font-family:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
   color:var(--ink);
-  background:radial-gradient(120% 60% at 50% 0%, #FAF3EF 0%, rgba(250,243,239,0) 60%), var(--porcelain);
+  background:radial-gradient(88% 44% at 10% 0%, #FFEFF4 0%, rgba(255,239,244,0) 60%),
+             radial-gradient(84% 42% at 94% 4%, #FFF6E2 0%, rgba(255,246,226,0) 58%),
+             var(--porcelain);
   line-height:1.5;
   -webkit-font-smoothing:antialiased;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --ink:#F5EDEA; --ink-soft:#B3A29E; --porcelain:#171214; --card:#221A1D;
-    --line:#3A2C31; --wine:#C98AA0; --gold:#C9A468; --gold-soft:#4A3A28;
+    --ink:#F9F2EF; --ink-soft:#C2B0B5; --porcelain:#211A1C; --card:#2E2427;
+    --line:#45363B; --wine:#F792AC; --wine-deep:#EE7D9C; --gold:#EFC475; --gold-soft:#59432C;
   }
   :root:not([data-theme="light"]) body{
-    background:radial-gradient(120% 60% at 50% 0%, #241B1F 0%, rgba(36,27,31,0) 60%), var(--porcelain);
+    background:radial-gradient(110% 55% at 50% 0%, #30242A 0%, rgba(48,36,42,0) 60%), var(--porcelain);
   }
-  :root:not([data-theme="light"]) .btn-primary{color:#1B1418}
 }
 :root[data-theme="dark"]{
-  --ink:#F5EDEA; --ink-soft:#B3A29E; --porcelain:#171214; --card:#221A1D;
-  --line:#3A2C31; --wine:#C98AA0; --gold:#C9A468; --gold-soft:#4A3A28;
+  --ink:#F9F2EF; --ink-soft:#C2B0B5; --porcelain:#211A1C; --card:#2E2427;
+  --line:#45363B; --wine:#F792AC; --wine-deep:#EE7D9C; --gold:#EFC475; --gold-soft:#59432C;
 }
 
 [hidden]{display:none !important}
@@ -61,17 +82,32 @@ button{font:inherit;color:inherit}
 .top{
   position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
   padding:22px 0 12px;
-  background:linear-gradient(to bottom,var(--porcelain) 74%,rgba(241,231,227,0));
+  background:linear-gradient(to bottom,var(--porcelain) 70%,rgba(255,251,248,0));
 }
-.top-row{display:flex;align-items:center;gap:16px;padding:0 14px}
+.top-row{display:flex;align-items:center;gap:10px;padding:0 14px}
 .mark{
   font-family:'Cormorant Garamond',Georgia,serif;
-  font-size:19px;letter-spacing:.24em;font-weight:500;text-transform:uppercase;
+  font-size:18px;letter-spacing:.2em;font-weight:500;text-transform:uppercase;
+  white-space:nowrap;
 }
 .mark span{color:var(--gold)}
-.counter{margin-left:auto;font-size:12px;color:var(--ink-soft);letter-spacing:.04em;white-space:nowrap}
+.counter{margin-left:auto;font-size:11.5px;color:var(--ink-soft);letter-spacing:.03em;white-space:nowrap}
+.lang{
+  display:inline-flex;border:1px solid var(--line);border-radius:999px;
+  overflow:hidden;background:var(--card);flex:0 0 auto;
+}
+.lang button{
+  border:0;background:transparent;cursor:pointer;
+  font-size:10.5px;font-weight:700;letter-spacing:.06em;
+  padding:5px 8px;color:var(--ink-soft);transition:background .15s,color .15s;
+}
+.lang button.is-on{background:var(--wine);color:#FFFFFF}
 .bar{height:2px;background:var(--line);margin:14px 14px 0;border-radius:2px;overflow:hidden}
 .bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .45s cubic-bezier(.22,.9,.3,1)}
+@media (max-width:359px){
+  .mark{font-size:15px;letter-spacing:.14em}
+  .counter{font-size:10.5px}
+}
 
 /* ---------- screens ---------- */
 .screen{display:none;padding:14px 14px 0}
@@ -89,8 +125,8 @@ p{margin:10px 0 0;color:var(--ink-soft);font-size:15px}
 }
 .hero h1 em{font-style:italic;color:var(--wine)}
 .facts{list-style:none;margin:24px 0 0;padding:0;border-top:1px solid var(--line)}
-.facts li{display:flex;gap:12px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px}
-.facts li b{font-weight:600;min-width:74px;color:var(--ink)}
+.facts li{display:flex;gap:14px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.facts li b{font-weight:600;min-width:92px;flex:0 0 auto;color:var(--ink)}
 .facts li span{color:var(--ink-soft)}
 
 /* options */
@@ -102,17 +138,19 @@ p{margin:10px 0 0;color:var(--ink-soft);font-size:15px}
   cursor:pointer;transition:border-color .15s,transform .08s,background .15s;
 }
 .opt:active{transform:scale(.988)}
-.opt .dot{width:9px;height:9px;border-radius:50%;background:var(--gold-soft);flex:none;box-shadow:0 0 0 4px rgba(176,138,79,.10)}
-.opt .body{min-width:0}
+.opt .dot{width:9px;height:9px;border-radius:50%;background:var(--gold-soft);flex:none;box-shadow:0 0 0 4px rgba(217,169,78,.16)}
+.opt .body{min-width:0;flex:1 1 auto}
 .opt .t{display:block;font-weight:600;font-size:15.5px;letter-spacing:-.01em}
 .opt .s{display:block;font-size:13px;color:var(--ink-soft);margin-top:2px}
-.opt.sel{border-color:var(--gold);background:linear-gradient(0deg,rgba(176,138,79,.06),rgba(176,138,79,.06)),var(--card)}
-.opt.sel .dot{background:var(--gold)}
+.opt .p{flex:0 0 auto;font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--ink-soft);white-space:nowrap}
+.opt.sel{border-color:var(--wine);background:linear-gradient(0deg,rgba(238,125,156,.08),rgba(238,125,156,.08)),var(--card)}
+.opt.sel .dot{background:var(--wine)}
+.opt.sel .p{color:var(--ink)}
 
 .teaser{
   margin-top:18px;display:flex;gap:10px;align-items:flex-start;
   border:1px dashed var(--gold);border-radius:var(--r-m);
-  padding:12px 14px;font-size:13.5px;color:var(--ink-soft);background:rgba(176,138,79,.05);
+  padding:12px 14px;font-size:13.5px;color:var(--ink-soft);background:rgba(217,169,78,.12);
 }
 .teaser b{color:var(--ink);font-weight:600}
 
@@ -123,17 +161,14 @@ p{margin:10px 0 0;color:var(--ink-soft);font-size:15px}
   text-align:center;text-decoration:none;
 }
 .btn:active{transform:scale(.99)}
-.btn-primary{background:var(--wine);color:#FFF8F5}
-.btn-primary:disabled{opacity:.35;cursor:default}
+.btn-primary{background:linear-gradient(135deg,var(--wine),var(--wine-deep));color:#FFFFFF;box-shadow:0 8px 22px rgba(238,125,156,.30)}
+.btn-primary:disabled{opacity:.35;cursor:default;box-shadow:none}
 .btn-line{background:transparent;border:1px solid var(--line);color:var(--ink);font-weight:600}
-.btn-back{
-  background:transparent;border:1px solid var(--line);color:var(--ink-soft);
-  font-weight:500;font-size:14.5px;padding:13px 20px;
-}
+.btn-back{background:transparent;border:1px solid var(--line);color:var(--ink-soft);font-weight:500;font-size:14.5px;padding:13px 20px}
 .actions{margin-top:24px;display:grid;gap:9px}
 
 /* cards */
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);padding:22px 20px;margin-top:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);padding:22px 20px;margin-top:20px;box-shadow:0 8px 24px rgba(214,160,175,.09)}
 .card h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;margin:0;line-height:1.2}
 .rows{margin:16px 0 0}
 .row{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-top:1px solid var(--line);font-size:14.5px}
@@ -146,7 +181,7 @@ p{margin:10px 0 0;color:var(--ink-soft);font-size:15px}
 .why{margin-top:16px;font-size:14px;color:var(--ink-soft);border-left:2px solid var(--gold);padding-left:12px}
 
 /* ---------- calendar ---------- */
-.cal{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);padding:16px 14px}
+.cal{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);padding:16px 14px;box-shadow:0 8px 24px rgba(214,160,175,.09)}
 .cal-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 4px 10px}
 .cal-title{font-family:'Cormorant Garamond',serif;font-size:21px}
 .cal-nav{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:transparent;display:grid;place-items:center;cursor:pointer;padding:0}
@@ -162,12 +197,12 @@ p{margin:10px 0 0;color:var(--ink-soft);font-size:15px}
 }
 .day.off{color:var(--ink-soft);opacity:.28;cursor:default}
 .day.today::after{content:'';position:absolute;bottom:6px;width:4px;height:4px;border-radius:50%;background:var(--gold)}
-.day.sel{background:var(--wine);color:#FFF8F5;font-weight:700}
-.day.sel::after{background:#FFF8F5}
+.day.sel{background:var(--wine);color:#FFFFFF;font-weight:700}
+.day.sel::after{background:#FFFFFF}
 .slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px;margin-top:14px}
 .slot{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:11px 6px;font-size:14.5px;font-weight:600;cursor:pointer;transition:border-color .15s,background .15s,transform .08s}
 .slot:active{transform:scale(.97)}
-.slot.sel{border-color:var(--gold);background:var(--wine);color:#FFF8F5}
+.slot.sel{border-color:var(--wine);background:var(--wine);color:#FFFFFF}
 .slots-title{margin-top:20px;font-size:13px;color:var(--ink-soft)}
 
 /* ---------- masters ---------- */
@@ -183,28 +218,26 @@ p{margin:10px 0 0;color:var(--ink-soft);font-size:15px}
   border:1.5px solid var(--line);display:grid;place-items:center;transition:border-color .18s,background .18s;
 }
 .tier-mark::after{content:'';width:8px;height:8px;border-radius:50%;background:transparent;transition:background .18s}
-.tier.sel{border-color:var(--gold);box-shadow:0 8px 24px rgba(176,138,79,.16)}
-.tier.sel .tier-mark{border-color:var(--gold);background:rgba(176,138,79,.12)}
-.tier.sel .tier-mark::after{background:var(--gold)}
+.tier.sel{border-color:var(--wine);box-shadow:0 10px 28px rgba(238,125,156,.22)}
+.tier.sel .tier-mark{border-color:var(--wine);background:rgba(238,125,156,.16)}
+.tier.sel .tier-mark::after{background:var(--wine)}
 .tier-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
 .tier-name{font-weight:700;font-size:16px;letter-spacing:-.01em}
 .tier-tag{
   font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--wine);
-  border:1px solid var(--gold-soft);background:rgba(176,138,79,.10);border-radius:999px;padding:3px 9px;
+  border:1px solid var(--gold-soft);background:rgba(217,169,78,.20);border-radius:999px;padding:3px 9px;
 }
-.tier-price{
-  display:block;font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1.2;margin-top:4px;
-}
+.tier-price{display:block;font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1.2;margin-top:4px}
 .tier-list{list-style:none;margin:11px 0 0;padding:0;display:grid;gap:6px}
 .tier-list li{position:relative;padding-left:16px;font-size:13.5px;color:var(--ink-soft);line-height:1.4}
 .tier-list li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--gold-soft)}
-.tier.sel .tier-list li::before{background:var(--gold)}
+.tier.sel .tier-list li::before{background:var(--wine)}
 
 /* ---------- wheel ---------- */
 .wheel-wrap{position:relative;width:min(92vw,352px);margin:26px auto 0;aspect-ratio:1}
-.wheel-wrap svg{display:block;width:100%;height:100%;filter:drop-shadow(0 14px 30px rgba(27,20,24,.18))}
+.wheel-wrap svg{display:block;width:100%;height:100%;filter:drop-shadow(0 14px 32px rgba(238,125,156,.24))}
 #wheelRot{transform-origin:170px 170px}
-.pin{position:absolute;left:50%;top:-4px;transform:translateX(-50%);width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:22px solid var(--wine);z-index:3;filter:drop-shadow(0 2px 3px rgba(0,0,0,.28))}
+.pin{position:absolute;left:50%;top:-4px;transform:translateX(-50%);width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:22px solid var(--wine-deep);z-index:3;filter:drop-shadow(0 2px 3px rgba(0,0,0,.18))}
 .hub{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   width:58px;height:58px;border-radius:50%;background:var(--card);border:1px solid var(--gold);
@@ -213,7 +246,7 @@ p{margin:10px 0 0;color:var(--ink-soft);font-size:15px}
 }
 
 /* ---------- modal ---------- */
-.modal{position:fixed;inset:0;z-index:50;display:none;align-items:flex-end;justify-content:center;background:rgba(27,20,24,.5);backdrop-filter:blur(3px);padding-top:env(safe-area-inset-top,0px)}
+.modal{position:fixed;inset:0;z-index:50;display:none;align-items:flex-end;justify-content:center;background:rgba(90,60,70,.34);backdrop-filter:blur(5px);padding-top:env(safe-area-inset-top,0px)}
 .modal.is-on{display:flex}
 .sheet{background:var(--card);width:100%;max-width:470px;border-radius:var(--r-l) var(--r-l) 0 0;padding:26px 28px calc(26px + env(safe-area-inset-bottom,0px));animation:rise .3s cubic-bezier(.2,.9,.3,1)}
 @keyframes rise{from{transform:translateY(24px);opacity:.4}to{transform:none;opacity:1}}
@@ -223,11 +256,18 @@ p{margin:10px 0 0;color:var(--ink-soft);font-size:15px}
 label{display:block;margin-top:14px;font-size:13px;color:var(--ink-soft)}
 input{width:100%;margin-top:6px;padding:14px 15px;border-radius:var(--r-m);border:1px solid var(--line);background:var(--porcelain);color:var(--ink);font:inherit;font-size:16px}
 input:focus{outline:none;border-color:var(--gold);background:var(--card)}
+.phone{position:relative;margin-top:6px}
+.phone-cc{
+  position:absolute;left:15px;top:50%;transform:translateY(-50%);
+  font-size:16px;font-weight:600;color:var(--ink);pointer-events:none;
+  padding-right:10px;border-right:1px solid var(--line);
+}
+.phone input{margin-top:0;padding-left:76px;letter-spacing:.02em}
 .err{color:var(--wine);font-size:12.5px;margin-top:8px;display:none}
 .err.is-on{display:block}
 .fineprint{font-size:11.5px;color:var(--ink-soft);margin-top:14px;line-height:1.45}
 
-.promo{margin-top:18px;border:1px dashed var(--gold);border-radius:var(--r-m);padding:16px;text-align:center;background:rgba(176,138,79,.06)}
+.promo{margin-top:18px;border:1px dashed var(--gold);border-radius:var(--r-m);padding:16px;text-align:center;background:rgba(217,169,78,.13)}
 .promo .code{font-family:'Cormorant Garamond',serif;font-size:30px;letter-spacing:.1em;color:var(--wine)}
 .promo small{display:block;font-size:12px;color:var(--ink-soft);margin-top:4px}
 .foot{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-soft)}
@@ -239,12 +279,6 @@ input:focus{outline:none;border-color:var(--gold);background:var(--card)}
 @media (prefers-reduced-motion: reduce){*{animation-duration:.01ms !important;transition-duration:.08s !important}}
 @media (min-width:520px){h1{font-size:44px}}
 </style>
-<!-- Za_manic: Meta Pixel. PIXEL_ID ni Events Manager'dagi haqiqiy ID bilan almashtiring; almashtirilmaguncha o'chiq turadi. -->
-<script>
-(function(){var PIXEL_ID='1130241889562182';
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init',PIXEL_ID);fbq('track','PageView');})();
-</script>
 </head>
 <body>
 
@@ -252,7 +286,11 @@ fbq('init',PIXEL_ID);fbq('track','PageView');})();
   <header class="top">
     <div class="top-row">
       <div class="mark">Za<span>_</span>manic</div>
-      <div class="counter" id="counter">60 секунд</div>
+      <div class="counter" id="counter"></div>
+      <div class="lang" id="lang">
+        <button type="button" data-lang="ru" class="is-on">RU</button>
+        <button type="button" data-lang="uz">UZ</button>
+      </div>
     </div>
     <div class="bar"><i id="barFill"></i></div>
   </header>
@@ -260,122 +298,122 @@ fbq('init',PIXEL_ID);fbq('track','PageView');})();
   <!-- INTRO -->
   <section class="screen is-on" id="s-intro">
     <div class="hero">
-      <div class="eyebrow">Маникюр · Педикюр · Брови</div>
-      <h1>Подберём вашу процедуру за <em>минуту</em></h1>
-      <p>Ответьте на несколько вопросов и выберите удобное время — администратор получит готовый запрос, и вам не придётся ничего объяснять заново.</p>
+      <div class="eyebrow" data-t="eyebrow"></div>
+      <h1 data-t="heroTitle"></h1>
+      <p data-t="heroText"></p>
       <ul class="facts">
-        <li><b>4 и 6 рук</b><span>маникюр, педикюр и брови за один визит</span></li>
-        <li><b>9:00–21:00</b><span>Ташкент, Айбека 61</span></li>
-        <li><b>Стерильно</b><span>крафт-пакет вскрываем при вас</span></li>
+        <li><b data-t="f1k"></b><span data-t="f1v"></span></li>
+        <li><b data-t="f2k"></b><span data-t="f2v"></span></li>
+        <li><b data-t="f3k"></b><span data-t="f3v"></span></li>
       </ul>
-      <div class="teaser">🎡 <span>В конце вас ждёт <b>колесо удачи</b>, где вы можете выиграть бонус на первый визит.</span></div>
-      <div class="actions"><button class="btn btn-primary" id="start">Начать подбор</button></div>
+      <div class="teaser">🎡 <span data-t="teaser"></span></div>
+      <div class="actions"><button class="btn btn-primary" id="start" data-t="startBtn"></button></div>
     </div>
   </section>
 
   <!-- QUESTIONS -->
   <section class="screen" id="s-q">
-    <h2 id="qTitle">Вопрос</h2>
+    <h2 id="qTitle"></h2>
     <p class="qhint" id="qHint"></p>
     <div class="opts" id="qOpts"></div>
-    <div class="teaser" id="qTeaser" hidden>🎡 <span>В конце вас ждёт <b>колесо удачи</b>, где вы можете выиграть бонус на первый визит.</span></div>
-    <div class="actions" id="qActions"><button class="btn btn-back js-back">← Назад</button></div>
+    <div class="teaser" id="qTeaser" hidden>🎡 <span data-t="teaser"></span></div>
+    <div class="actions" id="qActions"><button class="btn btn-back js-back" data-t="back"></button></div>
   </section>
 
   <!-- DATE & TIME -->
   <section class="screen" id="s-date">
-    <h2>Когда вам удобно?</h2>
-    <p>Выберите день и время — покажем свободные окна студии.</p>
+    <h2 data-t="dateTitle"></h2>
+    <p data-t="dateText"></p>
     <div class="cal">
       <div class="cal-head">
-        <button class="cal-nav" id="calPrev" aria-label="Предыдущий месяц"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <div class="cal-title" id="calTitle">Месяц</div>
-        <button class="cal-nav" id="calNext" aria-label="Следующий месяц"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+        <button class="cal-nav" id="calPrev" aria-label="←"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="cal-title" id="calTitle"></div>
+        <button class="cal-nav" id="calNext" aria-label="→"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
-      <div class="dow"><b>Пн</b><b>Вт</b><b>Ср</b><b>Чт</b><b>Пт</b><b>Сб</b><b>Вс</b></div>
+      <div class="dow" id="dowRow"></div>
       <div class="days" id="calDays"></div>
-      <div class="slots-title" id="slotsTitle">Сначала выберите день</div>
+      <div class="slots-title" id="slotsTitle"></div>
       <div class="slots" id="slots"></div>
     </div>
-    <div class="actions">
-      <button class="btn btn-primary" id="dateNext" disabled>Дальше</button>
-      <button class="btn btn-back js-back">← Назад</button>
-    </div>
+    <div class="actions"><button class="btn btn-back js-back" data-t="back"></button></div>
   </section>
 
   <!-- RESULT + MASTERS -->
   <section class="screen" id="s-result">
-    <h2>Ваш формат</h2>
+    <h2 data-t="resultTitle"></h2>
     <div class="card">
-      <h3 id="rTitle">Маникюр</h3>
+      <h3 id="rTitle"></h3>
       <div class="rows" id="rRows"></div>
       <div class="why" id="rWhy"></div>
     </div>
-    <h2 style="margin-top:30px">Выберите мастера</h2>
-    <p>Результат по стандарту студии одинаковый у всех — разница в опыте, скорости и сложности работ. Цена указана за весь ваш набор процедур.</p>
+    <h2 style="margin-top:30px" data-t="masterTitle"></h2>
+    <p data-t="masterText"></p>
     <div class="masters" id="tiers"></div>
     <div class="actions">
-      <button class="btn btn-primary" id="toWheel" disabled>Дальше — колесо удачи 🎡</button>
-      <button class="btn btn-back js-back">← Назад</button>
+      <button class="btn btn-primary" id="toWheel" disabled data-t="toWheelBtn"></button>
+      <button class="btn btn-back js-back" data-t="back"></button>
     </div>
   </section>
 
   <!-- WHEEL -->
   <section class="screen" id="s-wheel">
-    <h2>Колесо удачи</h2>
-    <p>Крутите колесо. У вас есть возможность получить бонус на первое посещение в наш салон.</p>
+    <h2 data-t="wheelTitle"></h2>
+    <p data-t="wheelText"></p>
     <div class="wheel-wrap">
       <div class="pin"></div>
       <div class="hub">Za</div>
       <svg viewBox="0 0 340 340" aria-hidden="true"><g id="wheelRot"></g></svg>
     </div>
     <div class="actions">
-      <button class="btn btn-primary" id="spin">Крутить</button>
-      <button class="btn btn-back js-back">← Назад</button>
+      <button class="btn btn-primary" id="spin" data-t="spinBtn"></button>
+      <button class="btn btn-back js-back" data-t="back"></button>
     </div>
   </section>
 
   <!-- FORM -->
   <section class="screen" id="s-form">
-    <h2>Скидка 20% ваша</h2>
-    <p>Проверьте запись и оставьте контакты — администратор подтвердит время и закрепит скидку за вами.</p>
+    <h2 data-t="formTitle"></h2>
+    <p data-t="formText"></p>
 
     <div class="card">
-      <h3>Ваша запись</h3>
+      <h3 data-t="yourBooking"></h3>
       <div class="rows" id="fRows"></div>
     </div>
 
-    <div class="card" style="padding-top:18px">
-      <label for="fName">Имя</label>
-      <input id="fName" type="text" autocomplete="given-name" placeholder="Как к вам обращаться">
-      <label for="fPhone">Телефон</label>
-      <input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 __ ___ __ __">
-      <label for="fTg">Telegram (если есть)</label>
+    <div class="card" id="formCard" style="padding-top:18px">
+      <label for="fName" data-t="lName"></label>
+      <input id="fName" type="text" autocomplete="given-name" data-ph="phName">
+      <label for="fPhone" data-t="lPhone"></label>
+      <div class="phone">
+        <span class="phone-cc">+998</span>
+        <input id="fPhone" type="tel" inputmode="numeric" autocomplete="tel-national"
+               maxlength="12" placeholder="90 123 45 67">
+      </div>
+      <label for="fTg" data-t="lTg"></label>
       <input id="fTg" type="text" autocomplete="off" placeholder="@username">
-      <div class="err" id="fErr">Заполните имя и телефон — без них не сможем подтвердить запись.</div>
-      <p class="fineprint">Отправляя, вы соглашаетесь, что с вами свяжутся по записи. Скидка действует на первый визит в течение 7 дней.</p>
+      <div class="err" id="fErr" data-t="errText"></div>
+      <p class="fineprint" data-t="fineprint"></p>
     </div>
 
     <div class="actions">
-      <button class="btn btn-primary" id="send">Получить скидку 20%</button>
-      <button class="btn btn-back js-back">← Назад</button>
+      <button class="btn btn-primary" id="send" data-t="sendBtn"></button>
     </div>
   </section>
 
   <!-- DONE -->
   <section class="screen" id="s-done">
-    <h2>Готово, <span id="dName">спасибо</span></h2>
-    <p>Мы получили ваш запрос. Администратор напишет и подтвердит выбранное время.</p>
+    <h2 id="doneTitle"></h2>
+    <p data-t="doneText"></p>
     <div class="promo">
       <div class="code" id="dCode">ZM20</div>
-      <small>Скидка 20% на первый визит · назовите код администратору</small>
+      <small data-t="promoNote"></small>
     </div>
     <div class="card"><div class="rows" id="dRows"></div></div>
     <div class="actions">
-      <a class="btn btn-primary" id="dBook" href="#" target="_blank" rel="noopener">Подтвердить онлайн</a>
-      <a class="btn btn-line" id="dTg" href="#" target="_blank" rel="noopener">Написать в Telegram</a>
+      <a class="btn btn-primary" id="dBook" href="#" target="_blank" rel="noopener" data-t="igBtn"></a>
+      <a class="btn btn-line" id="dTg" href="#" target="_blank" rel="noopener" data-t="tgBtn"></a>
     </div>
-    <div class="foot">Za_manic studio · Ташкент, Айбека 61 · ежедневно 9:00–21:00</div>
+    <div class="foot" data-t="foot"></div>
   </section>
 </div>
 
@@ -390,68 +428,209 @@ fbq('init',PIXEL_ID);fbq('track','PageView');})();
 
 <script>
 /* ==========================================================================
-   НАСТРОЙКИ
-   Все цены — в одном месте. Каждая выбранная процедура складывается
-   отдельной строкой, сверху добавляется надбавка за уровень мастера.
+   НАСТРОЙКИ / SOZLAMALAR
    ========================================================================== */
 const CONFIG = {
   bookingUrl : 'https://n1391908.alteg.io/',
-  telegram   : 'https://t.me/za_manic_',
+  instagram  : 'https://www.instagram.com/za_manic_/',
+  telegram   : 'https://t.me/za_manicc',
   leadWebhook: '',
   slotsApi   : '',
 
   openHour : 9,
   closeHour: 21,
   slotStep : 30,
-  daysAhead: 60,
-
-  /* ЦЕНЫ (сум) и ДЛИТЕЛЬНОСТЬ (мин) по каждой процедуре */
-  manicure: {
-    gel   :{label:'Маникюр с гель-лаком',        price:200000, min:60},
-    nude  :{label:'Маникюр без покрытия',        price:150000, min:50},
-    strong:{label:'Маникюр с укреплением',       price:270000, min:80},
-    unsure:{label:'Маникюр, покрытие на месте',  price:200000, min:60}
-  },
-  pedicure: {
-    covered:{label:'Педикюр с покрытием',        price:240000, min:70},
-    hygiene:{label:'Гигиенический педикюр',      price:200000, min:55},
-    problem:{label:'Педикюр, работа со стопами', price:290000, min:85}
-  },
-  brows: {
-    shape     :{label:'Коррекция бровей',        price:60000,  min:20},
-    tint      :{label:'Коррекция + окрашивание', price:90000,  min:30},
-    henna     :{label:'Брови хной',              price:110000, min:40},
-    lamination:{label:'Ламинирование бровей',    price:180000, min:60},
-    unsure    :{label:'Брови, подберём на месте',price:90000,  min:30}
-  },
-  /* оттенок и дизайн — доплата к маникюру, 0 = входит в цену */
-  style: {
-    nude   :{label:'Нюд и молочные оттенки',        price:0,     min:0},
-    french :{label:'Френч или скрытый френч',       price:30000, min:10},
-    dark   :{label:'Глубокий оттенок',              price:0,     min:0},
-    bright :{label:'Яркий цвет',                    price:0,     min:0},
-    design :{label:'Дизайн: втирка, блёстки, рисунок', price:40000, min:15},
-    onsite :{label:'Оттенок подберём на месте',     price:0,     min:0}
-  },
-
-  tiers: [
-    { id:'master', name:'Мастер', add:0, points:[
-      'Опыт от 2 лет, работает по стандартам студии',
-      'Классический маникюр, нюд, однотонное покрытие',
-      'Подходит, если нужен аккуратный базовый результат'
-    ]},
-    { id:'top', name:'Топ-мастер', add:60000, tag:'выбирают чаще', points:[
-      'Опыт от 4 лет, сложная форма и выравнивание',
-      'Укрепление, тонкий слой, запечатанный торец',
-      'Носка 3–4 недели без отслоек'
-    ]},
-    { id:'premium', name:'Премиум-мастер', add:170000, points:[
-      'Ведущий мастер студии, опыт от 7 лет',
-      'Сложные кейсы, дизайн, восстановление ногтей',
-      'Минимальное время процедуры'
-    ]}
-  ]
+  daysAhead: 60
 };
+
+/* ========================== ЯЗЫК ========================== */
+let lang = 'ru';
+const L = o => (o && o[lang] !== undefined) ? o[lang] : o;
+
+const T = {
+  eyebrow:    {ru:'Маникюр · Педикюр · Брови', uz:'Manikyur · Pedikyur · Qosh'},
+  heroTitle:  {ru:'Подберём вашу процедуру за <em>минуту</em>',
+               uz:'Xizmatni <em>bir daqiqada</em> tanlaymiz'},
+  heroText:   {ru:'Ответьте на несколько вопросов и выберите удобное время — администратор получит готовый запрос, и вам не придётся ничего объяснять заново.',
+               uz:'Bir nechta savolga javob bering va oʻzingizga qulay vaqtni tanlang — administrator tayyor soʻrovni oladi, siz hammasini qaytadan tushuntirib oʻtirmaysiz.'},
+  f1k:        {ru:'Услуги',   uz:'Xizmatlar'},
+  f1v:        {ru:'4 и 6 рук: маникюр, педикюр и брови', uz:'4 va 6 qoʻlda: manikyur, pedikyur va qosh'},
+  f2k:        {ru:'Работаем', uz:'Ish vaqti'},
+  f2v:        {ru:'с 9:00 до 21:00', uz:'9:00 dan 21:00 gacha'},
+  f3k:        {ru:'Адрес',    uz:'Manzil'},
+  f3v:        {ru:'Ташкент, Айбека 61', uz:'Toshkent, Oybek 61'},
+  teaser:     {ru:'В конце вас ждёт <b>колесо удачи</b>, где вы можете выиграть бонус на первый визит.',
+               uz:'Oxirida sizni <b>omad gʻildiragi</b> kutadi — birinchi tashrif uchun bonus yutib olsangiz boʻladi.'},
+  startBtn:   {ru:'Начать подбор', uz:'Boshlash'},
+  back:       {ru:'← Назад', uz:'← Orqaga'},
+
+  dateTitle:  {ru:'Когда вам удобно?', uz:'Qachon qulay?'},
+  dateText:   {ru:'Выберите день, затем свободное время.', uz:'Kunni tanlang, keyin boʻsh vaqtni.'},
+  pickDay:    {ru:'Сначала выберите день', uz:'Avval kunni tanlang'},
+  freeTime:   {ru:'Свободное время · ', uz:'Boʻsh vaqt · '},
+  noSlots:    {ru:'На этот день окон уже нет — выберите другой', uz:'Bu kunga joy qolmadi — boshqa kunni tanlang'},
+
+  resultTitle:{ru:'Ваш формат', uz:'Sizning xizmatingiz'},
+  masterTitle:{ru:'Выберите мастера', uz:'Ustani tanlang'},
+  masterText: {ru:'Результат по стандарту студии одинаковый у всех — разница в опыте и сложности работ. Цена указана за весь ваш набор процедур.',
+               uz:'Natija studiya standarti boʻyicha hammada bir xil — farq tajriba va ishning murakkabligida. Narx butun toʻplam uchun koʻrsatilgan.'},
+  toWheelBtn: {ru:'Дальше — колесо удачи 🎡', uz:'Keyingisi — omad gʻildiragi 🎡'},
+
+  wheelTitle: {ru:'Колесо удачи', uz:'Omad gʻildiragi'},
+  wheelText:  {ru:'Крутите колесо. У вас есть возможность получить бонус на первое посещение в наш салон.',
+               uz:'Gʻildirakni aylantiring. Salonimizga birinchi tashrif uchun bonus olish imkoniyati bor.'},
+  spinBtn:    {ru:'Крутить', uz:'Aylantirish'},
+  spinning:   {ru:'Крутим…', uz:'Aylanmoqda…'},
+
+  missTitle:  {ru:'В этот раз мимо', uz:'Bu safar omad kulmadi'},
+  missPrize:  {ru:'Пусто', uz:'Boʻsh'},
+  missText:   {ru:'Колесо остановилось на пустом секторе. Но у вас остался ещё один прокрут — попробуем?',
+               uz:'Gʻildirak boʻsh katakda toʻxtadi. Lekin sizda yana bitta urinish bor — sinab koʻramizmi?'},
+  missBtn:    {ru:'Крутить ещё раз', uz:'Yana aylantirish'},
+  winTitle:   {ru:'Ваш выигрыш', uz:'Siz yutdingiz'},
+  winPrize:   {ru:'Скидка 20%', uz:'20% chegirma'},
+  winText:    {ru:'Скидка 20% на первый визит в Za_manic. Оставьте контакты — администратор закрепит её за вами и подтвердит выбранное время.',
+               uz:'Za_manic ga birinchi tashrif uchun 20% chegirma. Kontaktlaringizni qoldiring — administrator chegirmani siz uchun saqlab qoʻyadi va tanlagan vaqtingizni tasdiqlaydi.'},
+  winBtn:     {ru:'Забрать скидку', uz:'Chegirmani olish'},
+
+  formTitle:  {ru:'Скидка 20% ваша', uz:'20% chegirma sizniki'},
+  formText:   {ru:'Проверьте запись и оставьте контакты — администратор подтвердит время и закрепит скидку за вами.',
+               uz:'Yozuvni tekshiring va kontaktlaringizni qoldiring — administrator vaqtni tasdiqlaydi va chegirmani saqlab qoʻyadi.'},
+  yourBooking:{ru:'Ваша запись', uz:'Sizning yozuvingiz'},
+  lName:      {ru:'Имя', uz:'Ism'},
+  phName:     {ru:'Как к вам обращаться', uz:'Sizni qanday chaqiraylik'},
+  lPhone:     {ru:'Телефон', uz:'Telefon'},
+  lTg:        {ru:'Telegram (если есть)', uz:'Telegram (boʻlsa)'},
+  errText:    {ru:'Введите имя и девять цифр номера — без них не сможем подтвердить запись.',
+               uz:'Ism va raqamning toʻqqiz raqamini kiriting — ularsiz yozuvni tasdiqlay olmaymiz.'},
+  fineprint:  {ru:'Отправляя, вы соглашаетесь, что с вами свяжутся по записи. Скидка действует на первый визит в течение 7 дней.',
+               uz:'Yuborish bilan siz bilan yozuv boʻyicha bogʻlanishga rozilik bildirasiz. Chegirma birinchi tashrifda, 7 kun ichida amal qiladi.'},
+  sendBtn:    {ru:'Получить скидку 20%', uz:'20% chegirmani olish'},
+
+  doneText:   {ru:'Мы получили ваш запрос. Администратор напишет и подтвердит выбранное время.',
+               uz:'Soʻrovingizni oldik. Administrator yozadi va tanlagan vaqtingizni tasdiqlaydi.'},
+  promoNote:  {ru:'Скидка 20% на первый визит · назовите код администратору',
+               uz:'Birinchi tashrifga 20% chegirma · kodni administratorga ayting'},
+  igBtn:      {ru:'Инстаграм профиль', uz:'Instagram profil'},
+  tgBtn:      {ru:'Написать в Telegram', uz:'Telegramga yozish'},
+  foot:       {ru:'Za_manic studio · Ташкент, Айбека 61 · ежедневно 9:00–21:00',
+               uz:'Za_manic studio · Toshkent, Oybek 61 · har kuni 9:00–21:00'},
+
+  /* строки таблиц */
+  rDate:      {ru:'Дата и время', uz:'Sana va vaqt'},
+  rMaster:    {ru:'Мастер', uz:'Usta'},
+  rTotal:     {ru:'Итого', uz:'Jami'},
+  rDiscount:  {ru:'Скидка по колесу 20%', uz:'Gʻildirak chegirmasi 20%'},
+  rPay:       {ru:'К оплате', uz:'Toʻlovga'},
+  rPayDisc:   {ru:'К оплате со скидкой', uz:'Chegirma bilan toʻlovga'},
+  rWheelOnly: {ru:'Скидка по колесу', uz:'Gʻildirak chegirmasi'},
+  rFirstVisit:{ru:'20% на первый визит', uz:'birinchi tashrifga 20%'},
+  onSite:     {ru:'уточним на месте', uz:'joyida aniqlaymiz'},
+  priceOnSite:{ru:'цену назовём на месте', uz:'narxni joyida aytamiz'},
+
+  /* счётчик в шапке */
+  cIntro:     {ru:'минута', uz:'bir daqiqa'},
+  cDate:      {ru:'Дата и время', uz:'Sana va vaqt'},
+  cResult:    {ru:'Ваш формат', uz:'Xizmatingiz'},
+  cWheel:     {ru:'Колесо удачи', uz:'Omad gʻildiragi'},
+  cForm:      {ru:'Последний шаг', uz:'Oxirgi qadam'},
+  cDone:      {ru:'Заявка принята', uz:'Ariza qabul qilindi'},
+
+  /* заголовки услуг */
+  sManicure:  {ru:'Маникюр', uz:'Manikyur'},
+  sPedicure:  {ru:'Педикюр', uz:'Pedikyur'},
+  sBoth:      {ru:'Маникюр + педикюр в 4 руки', uz:'Manikyur + pedikyur, 4 qoʻlda'},
+  sBrows:     {ru:'Маникюр + педикюр + брови в 6 рук', uz:'Manikyur + pedikyur + qosh, 6 qoʻlda'},
+
+  /* пояснения */
+  whyHands:   {ru:n=>'Процедуры идут параллельно в '+n+' рук — руки, ноги'+(n===6?' и брови':'')+' делают одновременно, а не один визит за другим.',
+               uz:n=>'Xizmatlar '+n+' qoʻlda parallel ketadi — qoʻl, oyoq'+(n===6?' va qosh':'')+' bir vaqtda qilinadi, alohida tashriflar emas.'},
+  whyStrong:  {ru:'Перед работой мастер оценит состояние пластины и покажет форму до покрытия — результат согласуем до начала, а не после.',
+               uz:'Ish boshlashdan oldin usta tirnoq holatini koʻradi va shaklni qoplamadan oldin koʻrsatadi — natijani oldindan kelishamiz.'},
+  whyUnsure:  {ru:'Принесите фото референса: мастер согласует с вами форму, длину и оттенок до начала работы, а не сделает по-своему.',
+               uz:'Namuna rasm olib keling: usta shakl, uzunlik va rangni ish boshlashdan oldin siz bilan kelishadi.'},
+  whyDefault: {ru:'Перед началом мастер уточнит форму, длину и толщину покрытия. Инструменты вскрывают при вас, пилки одноразовые.',
+               uz:'Usta ish oldidan shakl, uzunlik va qoplama qalinligini aniqlaydi. Asboblar sizning oldingizda ochiladi, egovlar bir martalik.'}
+};
+
+const MONTHS = {
+  ru:['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+  uz:['Yanvar','Fevral','Mart','Aprel','May','Iyun','Iyul','Avgust','Sentabr','Oktabr','Noyabr','Dekabr']
+};
+const MONTHS_OF = {
+  ru:['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'],
+  uz:['yanvar','fevral','mart','aprel','may','iyun','iyul','avgust','sentabr','oktabr','noyabr','dekabr']
+};
+const DOW = {
+  ru:['Пн','Вт','Ср','Чт','Пт','Сб','Вс'],
+  uz:['Du','Se','Cho','Pay','Jum','Sha','Yak']
+};
+const DOW_SHORT = {
+  ru:['пн','вт','ср','чт','пт','сб','вс'],
+  uz:['du','se','cho','pay','jum','sha','yak']
+};
+
+/* ------------------ УСЛУГИ (цены из прайса) ------------------ */
+const MANICURE = {
+  clean    :{ru:'Чистый маникюр',                        uz:'Toza manikyur',                              m:130000, t:150000},
+  japanese :{ru:'Японский маникюр',                      uz:'Yapon manikyuri',                            m:200000, t:220000},
+  halal    :{ru:'Халял маникюр',                         uz:'Halol manikyur',                             m:200000, t:220000},
+  gel      :{ru:'Комбинированный маникюр + гель-лак',    uz:'Kombi manikyur + gel-lak',                   m:180000, t:220000},
+  nude_base:{ru:'Нюдовый маникюр базой',                 uz:'Nyud manikyur (baza)',                       m:200000, t:230000},
+  nude_gel :{ru:'Нюдовый маникюр гелем',                 uz:'Nyud manikyur (gel)',                        m:210000, t:250000},
+  strong   :{ru:'Комби маникюр + укрепление + покрытие', uz:'Kombi manikyur + mustahkamlash + qoplama',   m:250000, t:300000},
+  ext      :{ru:'Наращивание ногтей',                    uz:'Tirnoq oʻstirish',                           m:300000, t:350000},
+  ext_top  :{ru:'Наращивание на верхних формах',         uz:'Yuqori formada oʻstirish',                   m:350000, t:400000},
+  ext_fix  :{ru:'Коррекция нарощенных ногтей',           uz:'Oʻstirilgan tirnoq korreksiyasi',            m:200000, t:250000},
+  unsure   :{ru:'Маникюр — подберём на месте',           uz:'Manikyur — joyida tanlaymiz',                m:0,      t:0}
+};
+
+const DESIGN = {
+  none   :{ru:'Без дизайна',                 uz:'Dizaynsiz',                      m:0,     t:0},
+  french :{ru:'Френч омбре',                 uz:'French ombre',                   m:50000, t:70000},
+  rub    :{ru:'Втирка',                      uz:'Vtirka',                         m:30000, t:40000},
+  cateye :{ru:'Кошачий глаз',                uz:'Mushuk koʻzi',                   m:40000, t:50000},
+  art    :{ru:'Дизайн на несколько ногтей',  uz:'Bir nechta tirnoqqa dizayn',     m:10000, t:10000},
+  stamp  :{ru:'Стемпинг',                    uz:'Stamping',                       m:10000, t:10000},
+  unsure :{ru:'Дизайн — подберём на месте',  uz:'Dizayn — joyida tanlaymiz',      m:0,     t:0}
+};
+
+const PEDICURE = {
+  classic     :{ru:'Классический педикюр',             uz:'Klassik pedikyur',                m:200000, t:250000},
+  classic_cov :{ru:'Классический педикюр с покрытием', uz:'Klassik pedikyur + qoplama',      m:250000, t:310000},
+  combi       :{ru:'Комбинированный педикюр',          uz:'Kombinatsiyalangan pedikyur',     m:230000, t:280000},
+  smart       :{ru:'SMART педикюр',                    uz:'SMART pedikyur',                  m:250000, t:300000},
+  heels       :{ru:'Работа со сложными пятками',       uz:'Qiyin tovon bilan ishlash',       m:50000,  t:60000},
+  unsure      :{ru:'Педикюр — подберём на месте',      uz:'Pedikyur — joyida tanlaymiz',     m:0,      t:0}
+};
+
+const COMBO = {
+  clean  :{ru:'Чистый маникюр + чистый педикюр',                    uz:'Toza manikyur + toza pedikyur',                       m:330000, t:400000},
+  nude   :{ru:'Нюдовый маникюр + классический педикюр с покрытием', uz:'Nyud manikyur + klassik pedikyur (qoplama bilan)',    m:450000, t:550000},
+  unsure :{ru:'Ещё не решила — подберём на месте',                  uz:'Hali hal qilmadim — joyida tanlaymiz',                m:0,      t:0}
+};
+
+const BROWS = {
+  tint       :{ru:'Окрашивание бровей',                          uz:'Qosh boʻyash',                          m:50000,  t:50000},
+  correction :{ru:'Коррекция бровей',                            uz:'Qosh korreksiyasi',                     m:80000,  t:80000},
+  arch       :{ru:'Архитектура бровей',                          uz:'Qosh arxitekturasi',                    m:100000, t:100000},
+  lam        :{ru:'Ламинирование бровей',                        uz:'Qosh laminatsiyasi',                    m:200000, t:200000},
+  lam_full   :{ru:'Ламинирование + окрашивание + архитектура',   uz:'Laminatsiya + boʻyash + arxitektura',   m:250000, t:250000},
+  unsure     :{ru:'Брови — подберём на месте',                   uz:'Qosh — joyida tanlaymiz',               m:0,      t:0}
+};
+
+const TIERS = [
+  { id:'master', ru:'Мастер', uz:'Usta', points:[
+    {ru:'Опыт от 2 лет, работает по стандартам студии', uz:'2 yildan ortiq tajriba, studiya standartlari boʻyicha ishlaydi'},
+    {ru:'Аккуратная форма, нюд, однотонное покрытие',   uz:'Ozoda shakl, nyud, bir xil rangli qoplama'}
+  ]},
+  { id:'top', ru:'Топ-мастер', uz:'Top usta',
+    tag:{ru:'выбирают чаще', uz:'koʻproq tanlanadi'}, points:[
+    {ru:'Опыт от 4 лет, сложная форма и выравнивание', uz:'4 yildan ortiq tajriba, murakkab shakl va tekislash'},
+    {ru:'Укрепление, тонкий слой, запечатанный торец', uz:'Mustahkamlash, yupqa qatlam, yopilgan chekka'},
+    {ru:'Носка 3–4 недели без отслоек',                uz:'3–4 hafta koʻchmasdan turadi'}
+  ]}
+];
 
 /*  ALTEGIO: из браузера напрямую нельзя — нужен закрытый ключ и мешает CORS.
     Схема: лендинг → ваш сервер → Altegio API → лендинг.
@@ -459,72 +638,163 @@ const CONFIG = {
     отдаёт {"slots":["10:00","10:30"]}. Пока пусто — сетка по часам работы. */
 
 /* ========================== ВОПРОСЫ ========================== */
-const hasManicure = a => a.service !== 'pedicure';
-const hasPedicure = a => a.service !== 'manicure';
-const hasBrows    = a => a.service === 'both_brows';
+const onlyManicure = a => a.service === 'manicure';
+const onlyPedicure = a => a.service === 'pedicure';
+const isCombo      = a => a.service === 'both' || a.service === 'both_brows';
+const hasBrows     = a => a.service === 'both_brows';
+/* халял-маникюр идёт без дизайна — сразу к записи */
+const needsDesign  = a => onlyManicure(a) &&
+  ['gel','nude_base','nude_gel','strong','ext','ext_top','ext_fix'].includes(a.manicure);
 
 const QUESTIONS = [
-  { id:'service', title:'Что будем делать?',
-    hint:'Несколько процедур можно собрать в один визит — их сделают одновременно.',
+  { id:'service',
+    title:{ru:'Что будем делать?', uz:'Nima qilamiz?'},
+    hint:{ru:'Несколько процедур можно собрать в один визит — их сделают одновременно.',
+          uz:'Bir nechta xizmatni bitta tashrifga yigʻsa boʻladi — ularni bir vaqtda qilishadi.'},
     options:[
-      {v:'manicure',   t:'Маникюр',                   s:'руки, покрытие, форма'},
-      {v:'pedicure',   t:'Педикюр',                   s:'стопы, покрытие, уход'},
-      {v:'both',       t:'Маникюр + педикюр',         s:'в 4 руки — одновременно'},
-      {v:'both_brows', t:'Маникюр + педикюр + брови', s:'в 6 рук — всё за один визит'}
+      {v:'manicure',   t:{ru:'Маникюр',uz:'Manikyur'},                       s:{ru:'руки, покрытие, форма',uz:'qoʻl, qoplama, shakl'}},
+      {v:'pedicure',   t:{ru:'Педикюр',uz:'Pedikyur'},                       s:{ru:'стопы, покрытие, уход',uz:'oyoq, qoplama, parvarish'}},
+      {v:'both',       t:{ru:'Маникюр + педикюр',uz:'Manikyur + pedikyur'},  s:{ru:'в 4 руки — одновременно',uz:'4 qoʻlda — bir vaqtda'}},
+      {v:'both_brows', t:{ru:'Маникюр + педикюр + брови',uz:'Manikyur + pedikyur + qosh'}, s:{ru:'в 6 рук — всё за один визит',uz:'6 qoʻlda — hammasi bitta tashrifda'}}
     ]},
 
-  { id:'coverage', title:'Какой маникюр нужен?',
-    hint:'Если не уверены — выберите последний пункт, мастер подберёт на месте.',
-    when:hasManicure,
+  { id:'manicure',
+    title:{ru:'Какой маникюр нужен?', uz:'Qanaqa manikyur kerak?'},
+    hint:{ru:'Если не уверены — последний пункт, мастер подберёт на месте.',
+          uz:'Ishonchingiz boʻlmasa — oxirgi bandni tanlang, usta joyida tanlab beradi.'},
+    when:onlyManicure, price:MANICURE,
     options:[
-      {v:'gel',    t:'Гель-лак',                   s:'носится 3–4 недели'},
-      {v:'nude',   t:'Без покрытия',               s:'чистый или японский маникюр'},
-      {v:'strong', t:'Укрепление или наращивание', s:'если ногти ломаются'},
-      {v:'unsure', t:'Ещё не решила',              s:'подскажем на месте'}
+      {v:'clean',    t:{ru:'Чистый маникюр',uz:'Toza manikyur'},                   s:{ru:'без покрытия, форма и кутикула',uz:'qoplamasiz, shakl va kutikula'}},
+      {v:'japanese', t:{ru:'Японский маникюр',uz:'Yapon manikyuri'},               s:{ru:'уход и полировка, без покрытия',uz:'parvarish va jilolash, qoplamasiz'}},
+      {v:'gel',      t:{ru:'Маникюр с гель-лаком',uz:'Gel-lak bilan manikyur'},    s:{ru:'носится 3–4 недели',uz:'3–4 hafta turadi'}},
+      {v:'nude_gel', t:{ru:'Нюдовый маникюр гелем',uz:'Nyud manikyur (gel)'},      s:{ru:'молочные и бежевые оттенки',uz:'sutli va bej ranglar'}},
+      {v:'halal',    t:{ru:'Халял маникюр',uz:'Halol manikyur'},                   s:{ru:'халяльный лак',uz:'halol lak'}},
+      {v:'strong',   t:{ru:'Маникюр с укреплением',uz:'Mustahkamlash bilan manikyur'}, s:{ru:'если ногти тонкие и ломаются',uz:'tirnoq yupqa va sinuvchan boʻlsa'}},
+      {v:'ext',      t:{ru:'Наращивание ногтей',uz:'Tirnoq oʻstirish'},            s:{ru:'наращивание длины и формы',uz:'uzunlik va shakl qoʻshiladi'}},
+      {v:'ext_top',  t:{ru:'Наращивание на верхних формах',uz:'Yuqori formada oʻstirish'}, s:{ru:'тонкий и естественный результат',uz:'yupqa va tabiiy natija'}},
+      {v:'ext_fix',  t:{ru:'Коррекция нарощенных',uz:'Oʻstirilgan tirnoq korreksiyasi'},   s:{ru:'если наращивание уже есть',uz:'oʻstirish allaqachon boʻlsa'}},
+      {v:'unsure',   t:{ru:'Ещё не решила',uz:'Hali hal qilmadim'},                s:{ru:'подскажем на месте',uz:'joyida maslahat beramiz'}}
     ]},
 
-  { id:'style', title:'Какой оттенок хотите?',
-    hint:'Вот что мы делаем чаще всего. Точный цвет подберёте с мастером по палитре.',
-    when:a => a.coverage === 'gel',
+  { id:'design',
+    title:{ru:'Добавим дизайн?', uz:'Dizayn qoʻshamizmi?'},
+    hint:{ru:'Это доплата к маникюру. Точный цвет подберёте с мастером по палитре.',
+          uz:'Bu manikyurga qoʻshimcha toʻlov. Aniq rangni usta bilan palitradan tanlaysiz.'},
+    when:needsDesign, price:DESIGN,
     options:[
-      {v:'nude',   t:'Нюд и молочные',        s:'бежевый, молочный, розовый — под любой дресс-код'},
-      {v:'french', t:'Френч',                 s:'классический или скрытый, тонкая линия'},
-      {v:'dark',   t:'Глубокий оттенок',      s:'бордо, шоколад, тёмно-серый'},
-      {v:'bright', t:'Яркий цвет',            s:'красный, фуксия, синий — из палитры'},
-      {v:'design', t:'С дизайном',            s:'втирка, блёстки, рисунок на 2–4 ногтя'},
-      {v:'onsite', t:'Покажу фото на месте',  s:'приходите с референсом'}
+      {v:'none',   t:{ru:'Без дизайна',uz:'Dizaynsiz'},                              s:{ru:'однотонное покрытие',uz:'bir xil rangli qoplama'}},
+      {v:'french', t:{ru:'Френч омбре',uz:'French ombre'},                           s:{ru:'мягкий переход, классика',uz:'yumshoq oʻtish, klassika'}},
+      {v:'rub',    t:{ru:'Втирка',uz:'Vtirka'},                                      s:{ru:'перламутровый блеск',uz:'sadaf yaltirashi'}},
+      {v:'cateye', t:{ru:'Кошачий глаз',uz:'Mushuk koʻzi'},                          s:{ru:'магнитный блик',uz:'magnitli chiziq'}},
+      {v:'art',    t:{ru:'Дизайн на несколько ногтей',uz:'Bir nechta tirnoqqa dizayn'}, s:{ru:'рисунок, блёстки, акцент',uz:'rasm, uchqun, aksent'}},
+      {v:'stamp',  t:{ru:'Стемпинг',uz:'Stamping'},                                  s:{ru:'чёткий узор, за один ноготь',uz:'aniq naqsh, bitta tirnoqqa'}},
+      {v:'unsure', t:{ru:'Ещё не решила',uz:'Hali hal qilmadim'},                    s:{ru:'покажу фото на месте',uz:'joyida rasm koʻrsataman'}}
     ]},
 
-  { id:'pedtype', title:'А педикюр какой?',
-    hint:'Второй мастер займётся ногами параллельно с руками.',
-    when:hasPedicure,
+  { id:'pedicure',
+    title:{ru:'Какой педикюр нужен?', uz:'Qanaqa pedikyur kerak?'},
+    hint:{ru:'', uz:''},
+    when:onlyPedicure, price:PEDICURE,
     options:[
-      {v:'covered', t:'С покрытием',              s:'обработка + гель-лак'},
-      {v:'hygiene', t:'Гигиенический',            s:'без покрытия, только уход'},
-      {v:'problem', t:'Сухость, трещины, мозоли', s:'работа со стопами'}
+      {v:'classic',     t:{ru:'Классический педикюр',uz:'Klassik pedikyur'},        s:{ru:'обработка стоп и ногтей',uz:'oyoq va tirnoqqa ishlov'}},
+      {v:'classic_cov', t:{ru:'Классический с покрытием',uz:'Klassik + qoplama'},   s:{ru:'обработка + гель-лак',uz:'ishlov + gel-lak'}},
+      {v:'combi',       t:{ru:'Комбинированный педикюр',uz:'Kombinatsiyalangan pedikyur'}, s:{ru:'аппарат и классика вместе',uz:'apparat va klassika birga'}},
+      {v:'smart',       t:{ru:'SMART педикюр',uz:'SMART pedikyur'},                 s:{ru:'аппаратный, без распаривания',uz:'apparatli, bugʻlamasdan'}},
+      {v:'heels',       t:{ru:'Работа со сложными пятками',uz:'Qiyin tovon bilan ishlash'}, s:{ru:'трещины, сухость, полировка',uz:'yoriq, quruqlik, jilolash'}},
+      {v:'unsure',      t:{ru:'Ещё не решила',uz:'Hali hal qilmadim'},              s:{ru:'подскажем на месте',uz:'joyida maslahat beramiz'}}
     ]},
 
-  { id:'browtype', title:'И что делаем с бровями?',
-    hint:'Третий мастер работает одновременно с остальными.',
-    when:hasBrows,
+  { id:'combo',
+    title:{ru:'Какой комплекс вам ближе?', uz:'Qaysi toʻplam sizga maʼqul?'},
+    hint:{ru:'Мастера работают одновременно — руки и ноги делаются параллельно.',
+          uz:'Ustalar bir vaqtda ishlaydi — qoʻl va oyoq parallel qilinadi.'},
+    when:isCombo, price:COMBO,
     options:[
-      {v:'shape',      t:'Только коррекция формы', s:'придать форму'},
-      {v:'tint',       t:'Коррекция и окрашивание',s:'краска, держится 2–3 недели'},
-      {v:'henna',      t:'Брови хной',             s:'насыщенный цвет, держится дольше'},
-      {v:'lamination', t:'Ламинирование',          s:'укладка волосков на 4–6 недель'},
-      {v:'unsure',     t:'Ещё не решила',          s:'мастер подберёт под ваше лицо'}
+      {v:'clean',  t:{ru:'Чистый маникюр + чистый педикюр',uz:'Toza manikyur + toza pedikyur'}, s:{ru:'без покрытия, аккуратно и быстро',uz:'qoplamasiz, tez va ozoda'}},
+      {v:'nude',   t:{ru:'Нюдовый маникюр + классический педикюр с покрытием',uz:'Nyud manikyur + klassik pedikyur (qoplama bilan)'}, s:{ru:'полный комплекс с покрытием',uz:'toʻliq toʻplam, qoplama bilan'}},
+      {v:'unsure', t:{ru:'Ещё не решила',uz:'Hali hal qilmadim'},                   s:{ru:'мастер подберёт на месте',uz:'usta joyida tanlab beradi'}}
     ]},
 
+  { id:'brows',
+    title:{ru:'И что делаем с бровями?', uz:'Qosh bilan nima qilamiz?'},
+    hint:{ru:'Третий мастер работает одновременно с остальными.',
+          uz:'Uchinchi usta qolganlar bilan bir vaqtda ishlaydi.'},
+    when:hasBrows, price:BROWS,
+    options:[
+      {v:'correction', t:{ru:'Коррекция бровей',uz:'Qosh korreksiyasi'},            s:{ru:'придать форму',uz:'shakl berish'}},
+      {v:'tint',       t:{ru:'Окрашивание',uz:'Boʻyash'},                           s:{ru:'краска, держится 2–3 недели',uz:'boʻyoq, 2–3 hafta turadi'}},
+      {v:'arch',       t:{ru:'Архитектура бровей',uz:'Qosh arxitekturasi'},         s:{ru:'форма под ваше лицо + окрашивание',uz:'yuzingizga mos shakl + boʻyash'}},
+      {v:'lam',        t:{ru:'Ламинирование',uz:'Laminatsiya'},                     s:{ru:'укладка волосков на 4–6 недель',uz:'4–6 haftaga yotqizish'}},
+      {v:'lam_full',   t:{ru:'Ламинирование + окрашивание + архитектура',uz:'Laminatsiya + boʻyash + arxitektura'}, s:{ru:'полный комплекс',uz:'toʻliq toʻplam'}},
+      {v:'unsure',     t:{ru:'Ещё не решила',uz:'Hali hal qilmadim'},               s:{ru:'мастер подберёт под ваше лицо',uz:'usta yuzingizga qarab tanlaydi'}}
+    ]}
+];
+
+const SECTORS = [
+  {lines:{ru:['Бесплатный','маникюр'], uz:['Bepul','manikyur']},   win:true},
+  {lines:{ru:['Скидка','20%'],         uz:['20%','chegirma']},     win:true},
+  {lines:{ru:['Пусто'],                uz:['Boʻsh']},              win:false},
+  {lines:{ru:['Дизайн','в подарок'],   uz:['Dizayn','sovgʻa']},    win:true},
+  {lines:{ru:['Пусто'],                uz:['Boʻsh']},              win:false},
+  {lines:{ru:['Скидка','5%'],          uz:['5%','chegirma']},      win:true},
+  {lines:{ru:['Сертификат','200 000'], uz:['Sertifikat','200 000']},win:true},
+  {lines:{ru:['Снятие','в подарок'],   uz:['Olib tashlash','sovgʻa']},win:true},
+  {lines:{ru:['Пусто'],                uz:['Boʻsh']},              win:false}
 ];
 
 /* ========================== СОСТОЯНИЕ ========================== */
 const A = {};
 let qIndex = 0, tier = null, spinCount = 0, spinning = false, rotation = 0;
 let calMonth, pickedDate = null, pickedSlot = null, current = 'intro';
+let lastLead = null;
 
 const $ = id => document.getElementById(id);
-const fmt = n => n.toLocaleString('ru-RU').replace(/,/g,' ') + ' сум';
+const fmt = n => n.toLocaleString('ru-RU').replace(/,/g,' ') + (lang==='ru' ? ' сум' : ' soʻm');
+const fmtFrom = n => lang==='ru' ? 'от ' + fmt(n) : fmt(n) + 'dan';
 const activeQuestions = () => QUESTIONS.filter(q => !q.when || q.when(A));
+
+/* Meta Pixel */
+function track(name, params, standard){
+  try{
+    if(typeof fbq !== 'function') return;
+    fbq(standard ? 'track' : 'trackCustom', name, params || {});
+  }catch(e){}
+}
+
+/* ========================== ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКА ========================== */
+function applyStatic(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    const v = L(T[el.dataset.t]);
+    if(typeof v === 'string') el.innerHTML = v;
+  });
+  document.querySelectorAll('[data-ph]').forEach(el=>{
+    el.placeholder = L(T[el.dataset.ph]) || '';
+  });
+  $('dowRow').innerHTML = DOW[lang].map(d=>'<b>'+d+'</b>').join('');
+}
+
+$('lang').addEventListener('click', e=>{
+  const b = e.target.closest('button');
+  if(!b || b.dataset.lang === lang) return;
+  lang = b.dataset.lang;
+  $('lang').querySelectorAll('button').forEach(x=>x.classList.toggle('is-on', x.dataset.lang===lang));
+  try{ localStorage.setItem('zm_lang', lang); }catch(err){}
+  applyStatic();
+  rerender();
+});
+
+function rerender(){
+  if(current === 'q')           renderQuestion();
+  else if(current === 'date'){  drawMonth(); setCounter('cDate'); }
+  else if(current === 'result') renderResult();
+  else if(current === 'wheel'){ redrawWheel(); setCounter('cWheel'); }
+  else if(current === 'form')   renderForm(false);
+  else if(current === 'done')   renderDone();
+  else setCounter('cIntro');
+}
+
+const setCounter = key => $('counter').textContent = L(T[key]);
 
 function show(name){
   current = name;
@@ -539,12 +809,11 @@ document.querySelectorAll('.js-back').forEach(b=>b.addEventListener('click', goB
 function goBack(){
   if(current === 'q'){
     if(qIndex > 0){ qIndex--; renderQuestion(); }
-    else { progress(6); $('counter').textContent='60 секунд'; show('intro'); }
+    else { progress(6); setCounter('cIntro'); show('intro'); }
   }
   else if(current === 'date'){ qIndex = activeQuestions().length - 1; renderQuestion(); }
   else if(current === 'result'){ renderDate(); }
   else if(current === 'wheel'){ renderResult(); }
-  else if(current === 'form'){ $('counter').textContent='Колесо удачи'; progress(88); show('wheel'); }
 }
 
 /* ========================== ВОПРОСЫ ========================== */
@@ -555,9 +824,10 @@ function renderQuestion(){
   if(qIndex >= list.length){ renderDate(); return; }
   const q = list[qIndex];
 
-  $('qTitle').textContent = q.title;
-  $('qHint').textContent = q.hint || '';
-  $('qHint').hidden = !q.hint;
+  $('qTitle').textContent = L(q.title);
+  const hint = L(q.hint);
+  $('qHint').textContent = hint || '';
+  $('qHint').hidden = !hint;
 
   const box = $('qOpts');
   box.innerHTML = '';
@@ -565,9 +835,16 @@ function renderQuestion(){
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'opt' + (A[q.id]===o.v ? ' sel' : '');
-    b.innerHTML = '<span class="dot"></span><span class="body"><span class="t"></span>'+(o.s?'<span class="s"></span>':'')+'</span>';
-    b.querySelector('.t').textContent = o.t;
-    if(o.s) b.querySelector('.s').textContent = o.s;
+    const it = q.price ? q.price[o.v] : null;
+    const showPrice = it && it.m > 0;
+    b.innerHTML = '<span class="dot"></span><span class="body"><span class="t"></span>'
+                + '<span class="s"></span></span>' + (showPrice ? '<span class="p"></span>' : '');
+    b.querySelector('.t').textContent = L(o.t);
+    b.querySelector('.s').textContent = L(o.s) || '';
+    if(showPrice){
+      const k = it.m/1000;
+      b.querySelector('.p').textContent = lang==='ru' ? 'от '+k+'к' : k+'k dan';
+    }
     b.addEventListener('click', ()=>{
       A[q.id] = o.v;
       box.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));
@@ -579,7 +856,9 @@ function renderQuestion(){
 
   $('qTeaser').hidden = qIndex < 1;
   $('qActions').hidden = qIndex === 0;
-  $('counter').textContent = 'Вопрос ' + (qIndex+1) + ' из ' + list.length;
+  $('counter').textContent = lang==='ru'
+    ? 'Вопрос ' + (qIndex+1) + ' из ' + list.length
+    : 'Savol ' + (qIndex+1) + ' / ' + list.length;
   progress(8 + (qIndex/list.length)*40);
   show('q');
 }
@@ -587,54 +866,54 @@ function renderQuestion(){
 /* ========================== РАСЧЁТ ========================== */
 function items(){
   const out = [];
-  if(hasManicure(A) && A.coverage) out.push(CONFIG.manicure[A.coverage]);
-  if(A.coverage === 'gel' && A.style && CONFIG.style[A.style].price > 0) out.push(CONFIG.style[A.style]);
-  if(hasPedicure(A) && A.pedtype)  out.push(CONFIG.pedicure[A.pedtype]);
-  if(hasBrows(A)    && A.browtype) out.push(CONFIG.brows[A.browtype]);
+  if(onlyManicure(A) && A.manicure) out.push(MANICURE[A.manicure]);
+  if(needsDesign(A) && A.design && A.design !== 'none' && DESIGN[A.design].m > 0) out.push(DESIGN[A.design]);
+  if(onlyPedicure(A) && A.pedicure) out.push(PEDICURE[A.pedicure]);
+  if(isCombo(A) && A.combo) out.push(COMBO[A.combo]);
+  if(hasBrows(A) && A.brows) out.push(BROWS[A.brows]);
   return out;
 }
-const servicesSum = () => items().reduce((s,i)=>s+i.price, 0);
-const tierObj = () => CONFIG.tiers.find(t=>t.id===tier) || CONFIG.tiers[0];
-const totalPrice = () => servicesSum() + tierObj().add;
+const tierObj = () => TIERS.find(t=>t.id===tier) || TIERS[0];
+const priceFor = (item, tid) => tid === 'top' ? item.t : item.m;
+const totalFor = tid => items().reduce((s,i)=>s + priceFor(i,tid), 0);
+const totalPrice = () => totalFor(tier || 'master');
 const finalPrice = () => Math.round(totalPrice() * 0.8 / 1000) * 1000;
+const hasUnsure  = () => items().some(i=>i.m === 0);
 
-function durationMin(){
-  const list = items();
-  if(!list.length) return 60;
-  if(list.length === 1) return list[0].min;
-  return Math.max(...list.map(i=>i.min)) + (list.length === 2 ? 10 : 15);
-}
-function durText(){
-  const d = durationMin(), h = Math.floor(d/60), m = d%60;
-  return (h ? h+' ч ' : '') + (m ? m+' мин' : '');
-}
-const serviceTitle = () => ({
-  manicure:'Маникюр', pedicure:'Педикюр',
-  both:'Маникюр + педикюр в 4 руки', both_brows:'Маникюр + педикюр + брови в 6 рук'
-})[A.service];
+const serviceTitle = () => L(({
+  manicure:T.sManicure, pedicure:T.sPedicure, both:T.sBoth, both_brows:T.sBrows
+})[A.service]);
 
 function whyText(){
   const hands = A.service === 'both_brows' ? 6 : (A.service === 'both' ? 4 : 0);
-  if(hands)
-    return 'Процедуры идут параллельно в '+hands+' рук — это примерно '+durText()+' вместо нескольких отдельных визитов.';
-  if(A.coverage === 'strong')
-    return 'Перед укреплением мастер оценит состояние пластины и покажет форму до покрытия — результат согласуем до работы, а не после.';
-  if(A.style === 'design' || A.style === 'onsite')
-    return 'Принесите фото референса: мастер согласует с вами форму, длину и оттенок до начала работы, а не сделает по-своему.';
-  return 'Перед началом мастер уточнит форму, длину и толщину покрытия. Инструменты вскрывают при вас, пилки одноразовые.';
+  if(hands) return L(T.whyHands)(hands);
+  if(A.manicure === 'strong' || (A.manicure||'').startsWith('ext')) return L(T.whyStrong);
+  if(A.design === 'unsure' || A.manicure === 'unsure' || A.combo === 'unsure') return L(T.whyUnsure);
+  return L(T.whyDefault);
 }
 
 const row = (k,v,cls) => '<div class="row'+(cls?' '+cls:'')+'"><span>'+k+'</span><b>'+v+'</b></div>';
+const itemRows = tid => items().map(i =>
+  row(L(i), i.m > 0 ? fmt(priceFor(i, tid)) : L(T.onSite))).join('');
 
 /* ========================== КАЛЕНДАРЬ ========================== */
-const MONTHS = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
 const startOfDay = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
 const iso = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const SLOT_RESERVE = 90;
+
+function dateText(){
+  if(!pickedDate) return '—';
+  const d = pickedDate.getDate(), m = pickedDate.getMonth();
+  const wd = (pickedDate.getDay() + 6) % 7;
+  return lang==='ru'
+    ? d + ' ' + MONTHS_OF.ru[m] + ', ' + DOW_SHORT.ru[wd]
+    : d + '-' + MONTHS_OF.uz[m] + ', ' + DOW_SHORT.uz[wd];
+}
 
 function renderDate(){
   if(!calMonth){ const n = new Date(); calMonth = new Date(n.getFullYear(), n.getMonth(), 1); }
   drawMonth();
-  $('counter').textContent = 'Дата и время';
+  setCounter('cDate');
   progress(58);
   show('date');
 }
@@ -642,7 +921,7 @@ function drawMonth(){
   const today = startOfDay(new Date());
   const last = new Date(today); last.setDate(last.getDate() + CONFIG.daysAhead);
 
-  $('calTitle').textContent = MONTHS[calMonth.getMonth()] + ' ' + calMonth.getFullYear();
+  $('calTitle').textContent = MONTHS[lang][calMonth.getMonth()] + ' ' + calMonth.getFullYear();
   $('calPrev').disabled = calMonth <= new Date(today.getFullYear(), today.getMonth(), 1);
   $('calNext').disabled = calMonth >= new Date(last.getFullYear(), last.getMonth(), 1);
 
@@ -672,7 +951,7 @@ $('calNext').addEventListener('click', ()=>{ calMonth = new Date(calMonth.getFul
 function localSlots(date){
   const out = [], now = new Date();
   const isToday = +startOfDay(now) === +startOfDay(date);
-  const lastStart = CONFIG.closeHour*60 - durationMin();
+  const lastStart = CONFIG.closeHour*60 - SLOT_RESERVE;
   for(let m = CONFIG.openHour*60; m <= lastStart; m += CONFIG.slotStep){
     if(isToday && m < now.getHours()*60 + now.getMinutes() + 60) continue;
     out.push(String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0'));
@@ -690,46 +969,39 @@ async function fetchSlots(date){
 async function drawSlots(){
   const box = $('slots');
   if(!pickedDate){
-    $('slotsTitle').textContent = 'Сначала выберите день';
-    box.innerHTML = ''; $('dateNext').disabled = true; return;
+    $('slotsTitle').textContent = L(T.pickDay);
+    box.innerHTML = ''; return;
   }
-  $('slotsTitle').textContent = 'Свободное время · ' + dateText();
+  $('slotsTitle').textContent = L(T.freeTime) + dateText();
   box.innerHTML = '';
   const slots = await fetchSlots(pickedDate);
-  if(!slots.length){
-    $('slotsTitle').textContent = 'На этот день окон уже нет — выберите другой';
-    $('dateNext').disabled = true; return;
-  }
+  if(!slots.length){ $('slotsTitle').textContent = L(T.noSlots); return; }
   slots.forEach(t=>{
     const b = document.createElement('button');
-    b.type='button'; b.className='slot'+(pickedSlot===t?' sel':''); b.textContent = t;
+    b.type='button'; b.className='slot'; b.textContent = t;
     b.addEventListener('click', ()=>{
       pickedSlot = t;
       box.querySelectorAll('.slot').forEach(x=>x.classList.remove('sel'));
       b.classList.add('sel');
-      $('dateNext').disabled = false;
+      setTimeout(renderResult, 200);
     });
     box.appendChild(b);
   });
-  $('dateNext').disabled = !pickedSlot;
 }
-const dateText = () => pickedDate ? pickedDate.toLocaleDateString('ru-RU',{day:'numeric',month:'long',weekday:'short'}) : '—';
-$('dateNext').addEventListener('click', renderResult);
 
 /* ========================== РЕЗУЛЬТАТ ========================== */
+function resultRows(tid){
+  return itemRows(tid) + row(L(T.rDate), dateText() + ', ' + (pickedSlot || '—'));
+}
+
 function renderResult(){
   $('rTitle').textContent = serviceTitle();
-  let html = '';
-  items().forEach(i => html += row(i.label, fmt(i.price)));
-  html += row('Займёт', '≈ ' + durText());
-  html += row('Дата и время', dateText() + ', ' + (pickedSlot || '—'));
-  html += row('Услуги', fmt(servicesSum()), 'total');
-  $('rRows').innerHTML = html;
+  $('rRows').innerHTML = resultRows(tier || 'master');
   $('rWhy').textContent = whyText();
 
   const box = $('tiers');
   box.innerHTML = '';
-  CONFIG.tiers.forEach(t=>{
+  TIERS.forEach(t=>{
     const b = document.createElement('button');
     b.type='button';
     b.className = 'tier' + (tier===t.id ? ' sel':'');
@@ -737,71 +1009,64 @@ function renderResult(){
       '<span class="tier-mark"></span>'+
       '<span class="tier-top"><span class="tier-name"></span>'+(t.tag?'<span class="tier-tag"></span>':'')+'</span>'+
       '<span class="tier-price"></span><ul class="tier-list"></ul>';
-    b.querySelector('.tier-name').textContent = t.name;
-    if(t.tag) b.querySelector('.tier-tag').textContent = t.tag;
-    b.querySelector('.tier-price').textContent = fmt(servicesSum() + t.add);
+    b.querySelector('.tier-name').textContent = L(t);
+    if(t.tag) b.querySelector('.tier-tag').textContent = L(t.tag);
+    const sum = totalFor(t.id);
+    b.querySelector('.tier-price').textContent = sum > 0
+      ? (hasUnsure() ? fmtFrom(sum) : fmt(sum))
+      : L(T.priceOnSite);
     const ul = b.querySelector('.tier-list');
-    t.points.forEach(p=>{ const li=document.createElement('li'); li.textContent=p; ul.appendChild(li); });
+    t.points.forEach(p=>{ const li=document.createElement('li'); li.textContent=L(p); ul.appendChild(li); });
     b.addEventListener('click', ()=>{
       tier = t.id;
       box.querySelectorAll('.tier').forEach(x=>x.classList.remove('sel'));
       b.classList.add('sel');
       $('toWheel').disabled = false;
+      $('rRows').innerHTML = resultRows(tier);
     });
     box.appendChild(b);
   });
 
-  $('counter').textContent = 'Ваш формат';
+  setCounter('cResult');
   progress(76);
   show('result');
 }
 
 $('toWheel').addEventListener('click', ()=>{
-  buildWheel();
-  $('counter').textContent = 'Колесо удачи';
+  redrawWheel();
+  setCounter('cWheel');
   progress(88);
   show('wheel');
 });
 
 /* ========================== КОЛЕСО ========================== */
-const SECTORS = [
-  {lines:['Бесплатный','маникюр'], win:true},
-  {lines:['Скидка','20%'],         win:true},
-  {lines:['Пусто'],                win:false},
-  {lines:['Дизайн','в подарок'],   win:true},
-  {lines:['Пусто'],                win:false},
-  {lines:['Скидка','5%'],          win:true},
-  {lines:['Сертификат','200 000'], win:true},
-  {lines:['Снятие','в подарок'],   win:true},
-  {lines:['Пусто'],                win:false}
-];
 const STEP = 360/SECTORS.length;
-const FILL = ['#6E2B3D','#B08A4F','#F7EFE9'];
-const TEXT = ['#FFF6F2','#2A1C14','#6B5A54'];
+const FILL = ['#F79BB4','#FBD584','#FFFFFF'];
+const TEXT = ['#FFFFFF','#7A5410','#B3A0A6'];
 
-function buildWheel(){
+function redrawWheel(){
   const g = $('wheelRot');
-  if(g.childNodes.length) return;
   const cx=170, cy=170, r=158;
-  let out = '<circle cx="170" cy="170" r="166" fill="#B08A4F" opacity=".25"/>'
-          + '<circle cx="170" cy="170" r="161" fill="none" stroke="#B08A4F" stroke-width="2"/>';
+  let out = '<circle cx="170" cy="170" r="167" fill="#FFE7EE"/>'
+          + '<circle cx="170" cy="170" r="161" fill="none" stroke="#F6C0CF" stroke-width="2"/>';
   SECTORS.forEach((s,i)=>{
     const a1=i*STEP, a2=(i+1)*STEP, mid=a1+STEP/2;
     const p = a => [cx + r*Math.sin(a*Math.PI/180), cy - r*Math.cos(a*Math.PI/180)];
     const [x1,y1]=p(a1), [x2,y2]=p(a2);
-    out += `<path d="M${cx} ${cy} L${x1.toFixed(2)} ${y1.toFixed(2)} A${r} ${r} 0 0 1 ${x2.toFixed(2)} ${y2.toFixed(2)} Z" fill="${FILL[i%3]}" stroke="#FFFCFB" stroke-width="1.4"/>`;
+    out += `<path d="M${cx} ${cy} L${x1.toFixed(2)} ${y1.toFixed(2)} A${r} ${r} 0 0 1 ${x2.toFixed(2)} ${y2.toFixed(2)} Z" fill="${FILL[i%3]}" stroke="#FFFFFF" stroke-width="1.8"/>`;
+    const lines = L(s.lines);
     const flip = mid > 180;
     const rot  = flip ? mid + 90 : mid - 90;
     const tx   = flip ? cx - r*0.585 : cx + r*0.585;
-    const size = s.lines.length > 1 ? 12 : 13;
-    const base = s.lines.length > 1 ? cy - 6 : cy + 4;
+    const size = lines.length > 1 ? 12 : 13;
+    const base = lines.length > 1 ? cy - 6 : cy + 4;
     let tspans = '';
-    s.lines.forEach((ln,k)=>{ tspans += `<tspan x="${tx}" y="${base + k*15}">${ln}</tspan>`; });
+    lines.forEach((ln,k)=>{ tspans += `<tspan x="${tx}" y="${base + k*15}">${ln}</tspan>`; });
     out += `<text text-anchor="middle" transform="rotate(${rot} ${cx} ${cy})" font-family="Manrope, sans-serif" font-size="${size}" font-weight="${s.win?'700':'500'}" fill="${TEXT[i%3]}">${tspans}</text>`;
   });
   for(let i=0;i<SECTORS.length;i++){
     const a = i*STEP*Math.PI/180;
-    out += `<circle cx="${(cx + 163*Math.sin(a)).toFixed(2)}" cy="${(cy - 163*Math.cos(a)).toFixed(2)}" r="2.6" fill="#B08A4F"/>`;
+    out += `<circle cx="${(cx + 163*Math.sin(a)).toFixed(2)}" cy="${(cy - 163*Math.cos(a)).toFixed(2)}" r="3" fill="#FFFFFF" stroke="#F6B3C6" stroke-width="1.1"/>`;
   }
   g.innerHTML = out;
 }
@@ -821,95 +1086,132 @@ $('spin').addEventListener('click', async ()=>{
   if(spinning) return;
   spinning = true;
   $('spin').disabled = true;
-  $('spin').textContent = 'Крутим…';
+  $('spin').textContent = L(T.spinning);
 
   if(spinCount === 0){
     await spinTo(4, 4400, 4);
     spinCount = 1;
     openModal({
-      title:'В этот раз мимо',
-      prize:'Пусто',
-      text:'Колесо остановилось на пустом секторе. Но у вас остался ещё один прокрут — попробуем?',
-      btn:'Крутить ещё раз',
-      onClick:()=>{ closeModal(); $('spin').disabled=false; $('spin').textContent='Крутить'; spinning=false; }
+      title:L(T.missTitle), prize:L(T.missPrize), text:L(T.missText), btn:L(T.missBtn),
+      onClick:()=>{ closeModal(); $('spin').disabled=false; $('spin').textContent=L(T.spinBtn); spinning=false; }
     });
   } else {
     await spinTo(1, 5600, 6);
     confetti();
     openModal({
-      title:'Ваш выигрыш',
-      prize:'Скидка 20%',
-      text:'Скидка 20% на первый визит в Za_manic. Оставьте контакты — администратор закрепит её за вами и подтвердит выбранное время.',
-      btn:'Забрать скидку',
-      onClick:()=>{ closeModal(); renderForm(); }
+      title:L(T.winTitle), prize:L(T.winPrize), text:L(T.winText), btn:L(T.winBtn),
+      onClick:()=>{ closeModal(); renderForm(true); }
     });
   }
 });
 
 /* ========================== ФОРМА ========================== */
-function renderForm(){
-  let html = '';
-  items().forEach(i => html += row(i.label, fmt(i.price)));
-  html += row('Мастер · ' + tierObj().name, tierObj().add ? '+ ' + fmt(tierObj().add) : 'включено');
-  html += row('Дата и время', dateText() + ', ' + (pickedSlot || '—'));
-  html += row('Займёт', '≈ ' + durText());
-  html += row('Итого', fmt(totalPrice()), 'total');
-  html += row('Скидка по колесу 20%', '− ' + fmt(totalPrice() - finalPrice()), 'save');
-  html += row('К оплате', fmt(finalPrice()), 'total');
+function renderForm(scroll){
+  let html = itemRows(tier);
+  html += row(L(T.rMaster), L(tierObj()));
+  html += row(L(T.rDate), dateText() + ', ' + (pickedSlot || '—'));
+  if(totalPrice() > 0){
+    html += row(L(T.rTotal), hasUnsure() ? fmtFrom(totalPrice()) : fmt(totalPrice()), 'total');
+    html += row(L(T.rDiscount), '− ' + fmt(totalPrice() - finalPrice()), 'save');
+    html += row(L(T.rPay), hasUnsure() ? fmtFrom(finalPrice()) : fmt(finalPrice()), 'total');
+  } else {
+    html += row(L(T.rWheelOnly), L(T.rFirstVisit), 'total');
+  }
   $('fRows').innerHTML = html;
-  $('counter').textContent = 'Последний шаг';
+  setCounter('cForm');
   progress(94);
   show('form');
+  if(scroll) requestAnimationFrame(()=>{
+    $('formCard').scrollIntoView({block:'start', behavior:'smooth'});
+  });
 }
+
+/* телефон: +998 закреплён, вводятся только 9 цифр номера */
+$('fPhone').addEventListener('input', e=>{
+  let raw = e.target.value.replace(/\D/g,'');
+  if(raw.length > 9 && raw.startsWith('998')) raw = raw.slice(3);
+  const d = raw.slice(0,9);
+  let out = d.slice(0,2);
+  if(d.length > 2) out += ' ' + d.slice(2,5);
+  if(d.length > 5) out += ' ' + d.slice(5,7);
+  if(d.length > 7) out += ' ' + d.slice(7,9);
+  e.target.value = out;
+});
+$('fPhone').addEventListener('keydown', e=>{ if(e.key === 'Enter') $('send').click(); });
 
 $('send').addEventListener('click', ()=>{
   const name = $('fName').value.trim();
-  const phone = $('fPhone').value.trim();
+  const digits = $('fPhone').value.replace(/\D/g,'');
+  const phone = '+998 ' + $('fPhone').value.trim();
   const tg = $('fTg').value.trim();
-  if(name.length < 2 || phone.replace(/\D/g,'').length < 9){ $('fErr').classList.add('is-on'); return; }
+  if(name.length < 2 || digits.length !== 9){ $('fErr').classList.add('is-on'); return; }
   $('fErr').classList.remove('is-on');
 
   const code = 'ZM20-' + Math.floor(1000 + Math.random()*9000);
-  const lead = {
+  lastLead = {
     code, name, phone, telegram: tg,
-    services: items().map(i=>i.label),
-    master: tierObj().name,
+    services: items().map(i=>L(i)),
+    master: L(tierObj()),
     total: totalPrice(), totalWithDiscount: finalPrice(),
-    duration: durText(),
     date: pickedDate ? iso(pickedDate) : '', slot: pickedSlot || '',
-    createdAt: new Date().toISOString()
+    lang, createdAt: new Date().toISOString()
   };
 
   /* Za_manic analitika: leadni serverga yuborish (javob kutilmaydi) */
-  try{ ZMTracker.submit({ name: name, phone: phone, service: lead.services.join(', '), master: lead.master, desired_time: ((lead.date || '') + ' ' + (lead.slot || '')).trim() }); }catch(e){}
+  try{ ZMTracker.submit({ name: name, phone: phone, service: lastLead.services.join(', '), master: lastLead.master, desired_time: ((lastLead.date || '') + ' ' + (lastLead.slot || '')).trim() }); }catch(e){}
   try{
     const all = JSON.parse(localStorage.getItem('zm_leads') || '[]');
-    all.push(lead); localStorage.setItem('zm_leads', JSON.stringify(all));
+    all.push(lastLead); localStorage.setItem('zm_leads', JSON.stringify(all));
   }catch(e){}
   if(CONFIG.leadWebhook){
-    try{ fetch(CONFIG.leadWebhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lead)}).catch(()=>{}); }catch(e){}
+    try{ fetch(CONFIG.leadWebhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lastLead)}).catch(()=>{}); }catch(e){}
   }
 
-  $('dName').textContent = name;
-  $('dCode').textContent = code;
-  let html = '';
-  items().forEach(i => html += row(i.label, fmt(i.price)));
-  html += row('Мастер', tierObj().name);
-  html += row('Дата и время', dateText() + ', ' + (pickedSlot || '—'));
-  html += row('Итого', fmt(totalPrice()), 'total');
-  html += row('К оплате со скидкой', fmt(finalPrice()), 'total');
-  $('dRows').innerHTML = html;
+  track('Lead', {
+    content_name: items().map(i=>i.ru).join(', '),
+    value: finalPrice(), currency: 'UZS'
+  }, true);
 
-  $('dBook').href = CONFIG.bookingUrl;
-  $('dTg').href = CONFIG.telegram + '?text=' + encodeURIComponent(
-    `Здравствуйте! Я прошла квиз на сайте.\nИмя: ${name}\nТелефон: ${phone}\n` +
-    `Услуги: ${items().map(i=>i.label).join(', ')}\nМастер: ${tierObj().name}\n` +
-    `Дата: ${dateText()}, ${pickedSlot||''}\nИтого: ${fmt(totalPrice())}, со скидкой ${fmt(finalPrice())}\nПромокод: ${code}`
-  );
-
-  $('counter').textContent = 'Заявка принята';
+  renderDone();
+  setCounter('cDone');
   progress(100);
   show('done');
+});
+
+function renderDone(){
+  if(!lastLead) return;
+  $('doneTitle').textContent = (lang==='ru' ? 'Готово, ' : 'Tayyor, ') + lastLead.name;
+  $('dCode').textContent = lastLead.code;
+
+  let html = itemRows(tier);
+  html += row(L(T.rMaster), L(tierObj()));
+  html += row(L(T.rDate), dateText() + ', ' + (pickedSlot || '—'));
+  if(totalPrice() > 0){
+    html += row(L(T.rTotal), hasUnsure() ? fmtFrom(totalPrice()) : fmt(totalPrice()), 'total');
+    html += row(L(T.rPayDisc), hasUnsure() ? fmtFrom(finalPrice()) : fmt(finalPrice()), 'total');
+  }
+  $('dRows').innerHTML = html;
+
+  $('dBook').href = CONFIG.instagram;
+  const msg = lang==='ru'
+    ? `Здравствуйте! Я прошла квиз на сайте.\nИмя: ${lastLead.name}\nТелефон: ${lastLead.phone}\n` +
+      `Услуги: ${items().map(i=>i.ru).join(', ')}\nМастер: ${tierObj().ru}\n` +
+      `Дата: ${dateText()}, ${pickedSlot||''}\n` +
+      (totalPrice()>0 ? `Итого: ${fmt(totalPrice())}, со скидкой ${fmt(finalPrice())}\n` : '') +
+      `Промокод: ${lastLead.code}`
+    : `Assalomu alaykum! Saytdagi testdan oʻtdim.\nIsm: ${lastLead.name}\nTelefon: ${lastLead.phone}\n` +
+      `Xizmatlar: ${items().map(i=>i.uz).join(', ')}\nUsta: ${tierObj().uz}\n` +
+      `Sana: ${dateText()}, ${pickedSlot||''}\n` +
+      (totalPrice()>0 ? `Jami: ${fmt(totalPrice())}, chegirma bilan ${fmt(finalPrice())}\n` : '') +
+      `Promokod: ${lastLead.code}`;
+  $('dTg').href = CONFIG.telegram + '?text=' + encodeURIComponent(msg);
+}
+
+$('dBook').addEventListener('click', ()=>{
+  track('InstagramClick', { content_name:'Инстаграм профиль', source:'quiz_final' });
+});
+$('dTg').addEventListener('click', ()=>{
+  track('Contact', { content_name:'Telegram' }, true);
 });
 
 /* ========================== МОДАЛКА ========================== */
@@ -929,7 +1231,7 @@ const closeModal = () => $('modal').classList.remove('is-on');
 function confetti(){
   const wrap = document.createElement('div');
   wrap.className = 'conf';
-  const colors = ['#B08A4F','#6E2B3D','#E8D7B8','#FFFCFB'];
+  const colors = ['#FBD584','#F79BB4','#FFE7EE','#A8DCCB','#FFFFFF'];
   for(let i=0;i<70;i++){
     const s = document.createElement('i');
     s.style.left = Math.random()*100 + 'vw';
@@ -943,18 +1245,20 @@ function confetti(){
   setTimeout(()=>wrap.remove(), 4200);
 }
 
+/* ========================== СТАРТ ========================== */
+try{
+  const saved = localStorage.getItem('zm_lang');
+  if(saved === 'uz' || saved === 'ru') lang = saved;
+}catch(e){}
+$('lang').querySelectorAll('button').forEach(x=>x.classList.toggle('is-on', x.dataset.lang===lang));
+applyStatic();
+setCounter('cIntro');
 progress(6);
 </script>
-<!-- Za_manic analitika: leadni serverga yuborish (UTM, ad_id, Pixel). Honeypot: odam ko'rmaydi, bot to'ldiradi. -->
+<!-- Za_manic analitika: leadni serverga yuborish (UTM, ad_id). Honeypot: odam ko'rmaydi, bot to'ldiradi. Pixel va Lead voqeasi sahifaning o'zida. -->
 <input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;width:0;height:0">
-<script>window.ZM_CONFIG={lp:"lp1",api:"https://za-manic.projects-team24.uz/api/leads/"};</script>
+<script>window.ZM_CONFIG={lp:"lp1",api:"https://za-manic.projects-team24.uz/api/leads/",pixelLead:false};</script>
 <script src="https://za-manic.projects-team24.uz/static/tracker.js" defer></script>
-<!-- Za_manic: "Подтвердить онлайн" endi bizning yozilish oynamizni ochadi (bo'sh slotlar Altegio'dan, UTM yo'qolmaydi). -->
-<script src="https://za-manic.projects-team24.uz/static/booking.js" defer></script>
-<script>
-document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#dBook');if(!b||!window.ZMBooking)return;
-  e.preventDefault();
-  try{ZMBooking.open({name:document.getElementById('fName').value.trim(),phone:document.getElementById('fPhone').value.trim()})}catch(x){window.open(b.href,'_blank')}});
-</script>
+
 </body>
 </html>
