@@ -239,6 +239,12 @@ input:focus{outline:none;border-color:var(--gold);background:var(--card)}
 @media (prefers-reduced-motion: reduce){*{animation-duration:.01ms !important;transition-duration:.08s !important}}
 @media (min-width:520px){h1{font-size:44px}}
 </style>
+<!-- Za_manic: Meta Pixel. PIXEL_ID ni Events Manager'dagi haqiqiy ID bilan almashtiring; almashtirilmaguncha o'chiq turadi. -->
+<script>
+(function(){var PIXEL_ID='YOUR_PIXEL_ID';if(PIXEL_ID==='YOUR_PIXEL_ID')return;
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init',PIXEL_ID);fbq('track','PageView');})();
+</script>
 </head>
 <body>
 
@@ -874,6 +880,8 @@ $('send').addEventListener('click', ()=>{
     createdAt: new Date().toISOString()
   };
 
+  /* Za_manic analitika: leadni serverga yuborish (javob kutilmaydi) */
+  try{ ZMTracker.submit({ name: name, phone: phone, service: lead.services.join(', '), master: lead.master, desired_time: ((lead.date || '') + ' ' + (lead.slot || '')).trim() }); }catch(e){}
   try{
     const all = JSON.parse(localStorage.getItem('zm_leads') || '[]');
     all.push(lead); localStorage.setItem('zm_leads', JSON.stringify(all));
@@ -936,6 +944,17 @@ function confetti(){
 }
 
 progress(6);
+</script>
+<!-- Za_manic analitika: leadni serverga yuborish (UTM, ad_id, Pixel). Honeypot: odam ko'rmaydi, bot to'ldiradi. -->
+<input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;width:0;height:0">
+<script>window.ZM_CONFIG={lp:"lp1",api:"https://za-manic.projects-team24.uz/api/leads/"};</script>
+<script src="https://za-manic.projects-team24.uz/static/tracker.js" defer></script>
+<!-- Za_manic: "Подтвердить онлайн" endi bizning yozilish oynamizni ochadi (bo'sh slotlar Altegio'dan, UTM yo'qolmaydi). -->
+<script src="https://za-manic.projects-team24.uz/static/booking.js" defer></script>
+<script>
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#dBook');if(!b||!window.ZMBooking)return;
+  e.preventDefault();
+  try{ZMBooking.open({name:document.getElementById('fName').value.trim(),phone:document.getElementById('fPhone').value.trim()})}catch(x){window.open(b.href,'_blank')}});
 </script>
 </body>
 </html>
