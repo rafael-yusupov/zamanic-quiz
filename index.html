@@ -435,7 +435,7 @@ const CONFIG = {
   instagram  : 'https://www.instagram.com/za_manic_/',
   telegram   : 'https://t.me/za_manicc',
   leadWebhook: '',
-  slotsApi   : '',
+  slotsApi   : 'https://za-manic.projects-team24.uz/api/booking/slots/',
 
   openHour : 9,
   closeHour: 21,
@@ -474,7 +474,7 @@ const T = {
   masterTitle:{ru:'Выберите мастера', uz:'Ustani tanlang'},
   masterText: {ru:'Результат по стандарту студии одинаковый у всех — разница в опыте и сложности работ. Цена указана за весь ваш набор процедур.',
                uz:'Natija studiya standarti boʻyicha hammada bir xil — farq tajriba va ishning murakkabligida. Narx butun toʻplam uchun koʻrsatilgan.'},
-  toWheelBtn: {ru:'Дальше — колесо удачи 🎡', uz:'Keyingisi — omad gʻildiragi 🎡'},
+  toWheelBtn: {ru:'Дальше — выбрать время', uz:'Keyingisi — vaqtni tanlash'},
 
   wheelTitle: {ru:'Колесо удачи', uz:'Omad gʻildiragi'},
   wheelText:  {ru:'Крутите колесо. У вас есть возможность получить бонус на первое посещение в наш салон.',
@@ -811,9 +811,9 @@ function goBack(){
     if(qIndex > 0){ qIndex--; renderQuestion(); }
     else { progress(6); setCounter('cIntro'); show('intro'); }
   }
-  else if(current === 'date'){ qIndex = activeQuestions().length - 1; renderQuestion(); }
-  else if(current === 'result'){ renderDate(); }
-  else if(current === 'wheel'){ renderResult(); }
+  else if(current === 'date'){ renderResult(); }
+  else if(current === 'result'){ qIndex = activeQuestions().length - 1; renderQuestion(); }
+  else if(current === 'wheel'){ renderDate(); }
 }
 
 /* ========================== ВОПРОСЫ ========================== */
@@ -821,7 +821,7 @@ $('start').addEventListener('click', ()=>{ qIndex=0; renderQuestion(); });
 
 function renderQuestion(){
   const list = activeQuestions();
-  if(qIndex >= list.length){ renderDate(); return; }
+  if(qIndex >= list.length){ renderResult(); return; }
   const q = list[qIndex];
 
   $('qTitle').textContent = L(q.title);
@@ -914,7 +914,7 @@ function renderDate(){
   if(!calMonth){ const n = new Date(); calMonth = new Date(n.getFullYear(), n.getMonth(), 1); }
   drawMonth();
   setCounter('cDate');
-  progress(58);
+  progress(76);
   show('date');
 }
 function drawMonth(){
@@ -961,7 +961,7 @@ function localSlots(date){
 async function fetchSlots(date){
   if(!CONFIG.slotsApi) return localSlots(date);
   try{
-    const r = await fetch(CONFIG.slotsApi + '?date=' + iso(date));
+    const r = await fetch(CONFIG.slotsApi + '?date=' + iso(date) + '&tier=' + encodeURIComponent(tier || 'master'));
     const j = await r.json();
     return Array.isArray(j.slots) ? j.slots : localSlots(date);
   }catch(e){ return localSlots(date); }
@@ -983,7 +983,7 @@ async function drawSlots(){
       pickedSlot = t;
       box.querySelectorAll('.slot').forEach(x=>x.classList.remove('sel'));
       b.classList.add('sel');
-      setTimeout(renderResult, 200);
+      setTimeout(goWheel, 200);
     });
     box.appendChild(b);
   });
@@ -991,7 +991,7 @@ async function drawSlots(){
 
 /* ========================== РЕЗУЛЬТАТ ========================== */
 function resultRows(tid){
-  return itemRows(tid) + row(L(T.rDate), dateText() + ', ' + (pickedSlot || '—'));
+  return itemRows(tid);
 }
 
 function renderResult(){
@@ -1018,6 +1018,7 @@ function renderResult(){
     const ul = b.querySelector('.tier-list');
     t.points.forEach(p=>{ const li=document.createElement('li'); li.textContent=L(p); ul.appendChild(li); });
     b.addEventListener('click', ()=>{
+      if(tier !== t.id) pickedSlot = null;   // daraja o'zgardi: eski vaqt endi to'g'ri kelmasligi mumkin
       tier = t.id;
       box.querySelectorAll('.tier').forEach(x=>x.classList.remove('sel'));
       b.classList.add('sel');
@@ -1028,16 +1029,17 @@ function renderResult(){
   });
 
   setCounter('cResult');
-  progress(76);
+  progress(58);
   show('result');
 }
 
-$('toWheel').addEventListener('click', ()=>{
+function goWheel(){
   redrawWheel();
   setCounter('cWheel');
   progress(88);
   show('wheel');
-});
+}
+$('toWheel').addEventListener('click', ()=>{ renderDate(); });
 
 /* ========================== КОЛЕСО ========================== */
 const STEP = 360/SECTORS.length;
