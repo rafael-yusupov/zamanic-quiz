@@ -1353,7 +1353,7 @@ $('send').addEventListener('click', ()=>{
   };
 
   /* Za_manic analitika: leadni serverga yuborish (javob kutilmaydi) */
-  try{ ZMTracker.submit({ name: name, phone: phone, service: lastLead.services.join(', '), master: lastLead.master, desired_time: ((lastLead.date || '') + ' ' + (lastLead.slot || '')).trim() }); }catch(e){}
+  try{ ZMTracker.submit({ name: name, phone: phone, service: lastLead.services.join(', '), master: lastLead.master, desired_time: ((lastLead.date || '') + ' ' + (lastLead.slot || '')).trim(), client_code: lastLead.code || '', note: [lastLead.total ? ('Итого ' + lastLead.total + (lastLead.totalWithDiscount ? ', со скидкой ' + lastLead.totalWithDiscount : '')) : '', lastLead.telegram ? ('TG: ' + lastLead.telegram) : '', lastLead.needsAdmin ? ('админ: ' + lastLead.needsAdmin) : ''].filter(Boolean).join(' · ') }); }catch(e){}
   try{
     const all = JSON.parse(localStorage.getItem('zm_leads') || '[]');
     all.push(lastLead); localStorage.setItem('zm_leads', JSON.stringify(all));
